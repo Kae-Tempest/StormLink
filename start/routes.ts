@@ -20,14 +20,6 @@
 
 import Route from "@ioc:Adonis/Core/Route";
 
-Route.get("/", async ({ view }) => {
-  return view.render("welcome");
+Route.get("/", async ({ inertia }) => {
+  return inertia.render("App");
 });
-
-Route.group(() => {
-  Route.get("/Home", async ({ inertia }) => {
-    return inertia.render("App", {
-      title: "Home",
-    });
-  });
-}).prefix("app");
