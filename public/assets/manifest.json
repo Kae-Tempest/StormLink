@@ -1,6 +1,10 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
   "assets/app.js": "http://localhost:8080/assets/app.js",
-  "assets/resources_js_Pages_App_vue.js": "http://localhost:8080/assets/resources_js_Pages_App_vue.js",
-  "assets/resources_js_Pages_Customer_vue.js": "http://localhost:8080/assets/resources_js_Pages_Customer_vue.js"
+  "assets/resources_js_Pages_Home_vue.css": "http://localhost:8080/assets/resources_js_Pages_Home_vue.css",
+  "assets/resources_js_Pages_Home_vue.js": "http://localhost:8080/assets/resources_js_Pages_Home_vue.js",
+  "assets/vendors-node_modules_inertiajs_inertia_dist_index_js-node_modules_vue-loader_dist_exportHelper_js.js": "http://localhost:8080/assets/vendors-node_modules_inertiajs_inertia_dist_index_js-node_modules_vue-loader_dist_exportHelper_js.js",
+  "assets/images/TempestLogo.png": "http://localhost:8080/assets/images/TempestLogo.9f13ec21.png",
+  "assets/images/wallpaper.png": "http://localhost:8080/assets/images/wallpaper.d1a8e773.png",
+  "assets/images/backgroundLogo1000.png": "http://localhost:8080/assets/images/backgroundLogo1000.99501804.png"
 }

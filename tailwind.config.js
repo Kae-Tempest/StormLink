@@ -1,8 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./resources/**/*.{edge,js,ts,vue,jsx,tsx}"],
+  content: [
+    "./resources/**/*.{edge,js,ts,jsx,tsx,vue}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+          '3xl': "1800px",
+          '4xl': "2600px"
+        }
+    },
   },
-  plugins: [],
-};
+    plugins: [
+    require('@catppuccin/tailwindcss')({
+      prefix: 'ctp',
+      defaultFlavour: 'mocha',
+    }),
+  ],
+}
