@@ -53,6 +53,13 @@
     picomatch "^2.3.1"
     slash "^3.0.0"
 
+"@adonisjs/attachment-lite@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@adonisjs/attachment-lite/-/attachment-lite-1.0.7.tgz#93723478fc822bff846507960c3aeed434b48c7a"
+  integrity sha512-LIMVQ1ejrsDfzUAWwhL7W8GnWBFkEn9SvnY8Q8FnTihYD+Mjt3TO7Nxt5JhO3ZtuuvzcJMQUrH6xjYC4p/Yb8Q==
+  dependencies:
+    "@poppinss/utils" "^4.0.4"
+
 "@adonisjs/bodyparser@^8.1.7":
   version "8.1.7"
   resolved "https://registry.npmjs.org/@adonisjs/bodyparser/-/bodyparser-8.1.7.tgz"
@@ -193,7 +200,7 @@
 
 "@adonisjs/lucid@^18.3.0":
   version "18.3.0"
-  resolved "https://registry.npmjs.org/@adonisjs/lucid/-/lucid-18.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@adonisjs/lucid/-/lucid-18.3.0.tgz#f491e03c4db2231b0c87a1a1daa7b0cb0902121b"
   integrity sha512-EgLgwP/VkTdOjA4MvnXjZmXGJl1qQVpGe4D/bCZqyO4859LZ/kHZ5a4VXe5+b2Nk4QDWF8uYq0MbSMDGskZr1Q==
   dependencies:
     "@faker-js/faker" "^7.6.0"
@@ -1276,7 +1283,7 @@
 
 "@faker-js/faker@^7.6.0":
   version "7.6.0"
-  resolved "https://registry.npmjs.org/@faker-js/faker/-/faker-7.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-7.6.0.tgz#9ea331766084288634a9247fcd8b84f16ff4ba07"
   integrity sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==
 
 "@fortawesome/fontawesome-common-types@6.3.0":
@@ -1637,7 +1644,7 @@
 
 "@poppinss/hooks@^5.0.3":
   version "5.0.3"
-  resolved "https://registry.npmjs.org/@poppinss/hooks/-/hooks-5.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/@poppinss/hooks/-/hooks-5.0.3.tgz#7c911f62d303ba79011546d8953616dea36a602d"
   integrity sha512-M5a151VUl+RslVP5qwDW+u+0VmzKt5Nfplzdx2nrtXol3yVlLN3u2Jp6UADESid3DDI7IRHmFrA3sQusey3eUA==
 
 "@poppinss/hooks@^6.0.2-0":
@@ -4500,7 +4507,7 @@ get-intrinsic@^1.0.2:
 
 get-package-type@^0.1.0:
   version "0.1.0"
-  resolved "https://registry.npmjs.org/get-package-type/-/get-package-type-0.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/get-package-type/-/get-package-type-0.1.0.tgz#8de2d803cff44df3bc6c456e6668b36c3926e11a"
   integrity sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==
 
 get-port@^3.1.0:
@@ -5359,7 +5366,7 @@ klona@^2.0.5:
 
 knex-dynamic-connection@^3.0.0:
   version "3.0.0"
-  resolved "https://registry.npmjs.org/knex-dynamic-connection/-/knex-dynamic-connection-3.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/knex-dynamic-connection/-/knex-dynamic-connection-3.0.0.tgz#122e0a3c3477583f94cdf85d51c224cde17c4fb6"
   integrity sha512-LSUlabH/5QHTzMxd8d+bhbiBAivV7QdtE4zPI2CfKYbx+uV1gqaN5Ua5AZc/O7kGAQJ4q35/4gUheCoHGPUHzg==
   dependencies:
     debug "^4.3.4"
@@ -5367,7 +5374,7 @@ knex-dynamic-connection@^3.0.0:
 
 knex@^2.0.0, knex@^2.3.0:
   version "2.4.2"
-  resolved "https://registry.npmjs.org/knex/-/knex-2.4.2.tgz"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-2.4.2.tgz#a34a289d38406dc19a0447a78eeaf2d16ebedd61"
   integrity sha512-tMI1M7a+xwHhPxjbl/H9K1kHX+VncEYcvCx5K00M16bWvpYPKAZd6QrCu68PtHAdIZNQPWZn0GVhqVBEthGWCg==
   dependencies:
     colorette "2.0.19"
@@ -6957,7 +6964,7 @@ rechoir@^0.7.0:
 
 rechoir@^0.8.0:
   version "0.8.0"
-  resolved "https://registry.npmjs.org/rechoir/-/rechoir-0.8.0.tgz"
+  resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.8.0.tgz#49f866e0d32146142da3ad8f0eff352b3215ff22"
   integrity sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ==
   dependencies:
     resolve "^1.20.0"
@@ -7805,7 +7812,7 @@ tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
 
 tarn@^3.0.2:
   version "3.0.2"
-  resolved "https://registry.npmjs.org/tarn/-/tarn-3.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/tarn/-/tarn-3.0.2.tgz#73b6140fbb881b71559c4f8bfde3d9a4b3d27693"
   integrity sha512-51LAVKUSZSVfI05vjPESNc5vwqqZpbXCsU+/+wxlOrUjk2SnFTt97v9ZgQrD4YmxYW1Px6w2KjaDitCfkvgxMQ==
 
 term-size@^2.2.1:

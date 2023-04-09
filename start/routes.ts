@@ -25,3 +25,4 @@ Route.get("/", async ({ inertia }) => {
 });
 
 Route.post('/postimg', 'PostsController.store')
+Route.get('/post', 'PostsController.index')
