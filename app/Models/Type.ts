@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, column, HasMany } from "@ioc:Adonis/Lucid/Orm";
+import { hasMany } from "@adonisjs/lucid/build/src/Orm/Decorators";
+import Post from "App/Models/Post";
 
 export default class Type extends BaseModel {
   @column({ isPrimary: true })
@@ -13,4 +15,7 @@ export default class Type extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @hasMany(() => Post)
+  public users: HasMany<typeof Post>;
 }

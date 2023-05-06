@@ -1,15 +1,18 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, BelongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import { belongsTo } from "@adonisjs/lucid/build/src/Orm/Decorators";
+import User from "App/Models/User";
+import Post from "App/Models/Post";
 
 export default class Comment extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
   @column()
-  public postId: number;
+  public post_id: number;
 
   @column()
-  public userId: number;
+  public user_id: number;
 
   @column()
   public content: string;
@@ -22,4 +25,10 @@ export default class Comment extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>;
+
+  @belongsTo(() => Post)
+  public post: BelongsTo<typeof Post>;
 }

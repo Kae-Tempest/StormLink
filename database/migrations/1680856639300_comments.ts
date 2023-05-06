@@ -6,10 +6,20 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.integer("postId").references("id").inTable("posts").notNullable();
-      table.integer("userId").references("id").inTable("users").notNullable();
+      table
+        .integer("post_id")
+        .unsigned()
+        .references("id")
+        .inTable("posts")
+        .notNullable();
+      table
+        .integer("user_id")
+        .unsigned()
+        .references("id")
+        .inTable("users")
+        .notNullable();
       table.string("content").notNullable();
-      table.integer("Like").notNullable().defaultTo(0);
+      table.integer("like").notNullable().defaultTo(0);
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

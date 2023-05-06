@@ -22,9 +22,8 @@
 <script setup lang="ts">
 import PostModal from './PostModal.vue'
 import { ref } from 'vue';
-let showModal = ref(true)
+let showModal = ref(false)
 const ShowModal = async () =>{
-  console.log('24')
   showModal.value = true
 }
 </script>

@@ -1,15 +1,11 @@
 <template>
     <div class="flex">
         <NavBar />
-        <div class="grid h-screen gap-4 pt-5 grid-cols-2 mx-10 lg:grid-cols-3 grid-flow-row lg:mx-28 xl:mx-44 2xl:mx-58 3xl:mx-72 overflow-x-hidden overflow-y-auto " id='screen'>
-            <LittlePost v-bind="text"/>
-            <LargePost v-bind="img"/>
-            <LargePost v-bind="text"/>
-            <LittlePost v-bind="text"/>
-            <LittlePost v-bind="text"/>
-            <LittlePost v-bind="text"/>
-            <LittlePost v-bind="text"/>
-
+        <div class="grid h-screen gap-4 pt-5 grid-cols-2 mx-10 lg:grid-cols-3 grid-flow-row lg:mx-28 xl:mx-44 2xl:mx-58 3xl:mx-72 overflow-x-hidden overflow-y-auto" :class="posts.length <=4 ? 'lg:grid-rows-[325px_minmax(100px,_1fr)_100px]' : 'grid-flow-row' " id='screen'>
+            <template v-for="post in posts" class="py-4">
+                <LittlePost v-if="post.size === 'small'" :path="post.path" :type_post="post.type_post"/>
+                <LargePost v-else-if="post.size === 'large'" :path="post.path" :type_post="post.type_post"/>
+            </template>
         </div>
     </div>
 </template>
@@ -18,9 +14,17 @@
     import NavBar from '../components/NavBar.vue'
     import LittlePost from '../components/LittlePost.vue'
     import LargePost from '../components/LargePost.vue'
+    import { ref, onMounted } from "vue";
+    import axios from "axios";
+    const posts = ref({})
 
-    const text = {modelType: 'text'}
-    const img = {modelType: 'img'}
+    onMounted(async () => {
+        const { data: post } = await axios.get('/post')
+        posts.value = post
+    })
+
+
+
 </script>
 
 <style>

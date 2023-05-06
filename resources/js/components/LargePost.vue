@@ -1,5 +1,5 @@
 <template>
-    <div v-if="props.modelType === 'text'" class="border-2 border-ctp-blue w-full h-[323px] overflow-hidden rounded-[10px] col-span-2">
+    <div v-if="props.type_post === 1" class="border-2 border-ctp-blue w-full h-[323px] overflow-hidden rounded-[10px] col-span-2">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, similique molestiae? Temporibus error ratione consequuntur expedita officia suscipit rerum voluptatibus at ipsa, accusamus fuga sed. Mollitia in quod fuga commodi.
         Sunt dignissimos voluptates, explicabo quidem itaque nesciunt exercitationem fugiat sit asperiores quibusdam facilis dolorum excepturi distinctio suscipit tenetur debitis? Esse, aliquam! Necessitatibus fuga alias illo mollitia dolore consequatur odio eaque.
         Id vero, temporibus doloremque, ea est molestias provident repudiandae, laborum quia dolorem fugiat itaque magnam aperiam autem distinctio iste quis exercitationem enim sapiente? Nobis sapiente dicta modi asperiores commodi corrupti.
@@ -30,13 +30,15 @@
         Dicta saepe alias necessitatibus? Et veritatis qui ipsum tenetur eum excepturi, neque debitis voluptatibus nisi aut est, nesciunt suscipit rerum hic praesentium reprehenderit quos eius repellat sint asperiores. Aut, assumenda?
         Iste tempora itaque modi ullam saepe ea maiores vel, error sit obcaecati deleniti repellat quia eveniet ipsa asperiores, fuga neque cupiditate maxime velit quod optio aspernatur animi quo. Praesentium, dicta!
     </div>
-    <div v-if="props.modelType === 'img'" class="border-2 border-ctp-blue w-full h-[323px] overflow-hidden rounded-[10px] col-span-2">
-        <img src="../../assets/wallpaper.png" alt="logo" class="w-full h-full rounded-[10px]">
+    <div v-if="props.type_post === 2" class="border-2 border-ctp-blue w-full h-[323px] overflow-hidden rounded-[10px] col-span-2">
+        <img :src="props.path" :alt="props.path" class="w-full h-full rounded-[10px]">
     </div>
 </template>
 <script setup lang="ts">
+
 interface Props {
-    modelType: String
+    type_post: number,
+    path: string
 }
 
 const props = defineProps<Props>()

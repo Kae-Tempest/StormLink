@@ -1,9 +1,10 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
-import {
-  attachment,
-  AttachmentContract,
-} from "@ioc:Adonis/Addons/AttachmentLite";
+import {BaseModel, BelongsTo, column, HasMany, HasOne} from "@ioc:Adonis/Lucid/Orm";
+import {belongsTo, hasMany, hasOne} from "@adonisjs/lucid/build/src/Orm/Decorators";
+import {attachment, AttachmentContract} from "@ioc:Adonis/Addons/AttachmentLite";
+import Post from "App/Models/Post";
+import Role from "App/Models/Role";
+import Comment from "App/Models/Comment";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -25,10 +26,10 @@ export default class User extends BaseModel {
   public roleId: number;
 
   @column()
-  public biography: string;
+  public biography: string | null;
 
   @attachment()
-  public avatar: AttachmentContract;
+  public avatar: AttachmentContract | null;
 
   @column()
   public nbFollower: number;
@@ -44,4 +45,13 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @hasOne(() => Post)
+  public post: HasOne<typeof Post>;
+
+  @belongsTo(() => Role)
+  public role: BelongsTo<typeof Role>;
+
+  @hasMany(() => Comment)
+  public comment: HasMany<typeof Comment>;
 }
