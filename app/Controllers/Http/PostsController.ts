@@ -1,4 +1,4 @@
-import type {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
+ import type {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
 import {existsSync, mkdirSync, readdirSync} from "fs";
 import Application from "@ioc:Adonis/Core/Application";
 import Post from "App/Models/Post";
@@ -31,7 +31,7 @@ export default class PostsController {
       post.type_post = Types.IMAGE;
       const postFile = request.file("file", {
         size: "5mb",
-        extnames: ["jpg", "png", "gif"],
+        extnames: ["jpg", "jpeg", "png", "gif"],
       });
       if (!postFile) return;
       if (!postFile.isValid) return postInfo.errors;
@@ -41,7 +41,6 @@ export default class PostsController {
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const dir = `resources/assets/post/${year}/${month}/${day}`;
-      post.path = dir;
 
       if (!existsSync(dir)) {
         await mkdirSync(dir, { recursive: true });
@@ -49,11 +48,13 @@ export default class PostsController {
         await postFile.move(Application.makePath(dir), {
           name: `${files.length + 1}.${postFile.extname}`,
         });
+        post.path = `resources/assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
       } else {
         const files = readdirSync(dir);
         await postFile.move(Application.makePath(dir), {
           name: `${files.length + 1}.${postFile.extname}`,
         });
+        post.path = `resources/assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
       }
     }
 
@@ -62,9 +63,7 @@ export default class PostsController {
     return response;
   }
 
-  public async show({}: HttpContextContract) {
-
-  }
+  public async show({}: HttpContextContract) {}
 
   public async edit({}: HttpContextContract) {}
 
