@@ -17,22 +17,22 @@ export default class PostsController {
   public async store({ request, response }: HttpContextContract) {
     const post = new Post();
     const postInfo = request.body();
+    const postFile = request.file("file", {
+      size: "5mb",
+      extnames: ["jpg", "jpeg", "png", "gif"],
+    });
 
     post.size = postInfo.size;
     post.description = postInfo.desc;
     post.like = 0;
     post.user_id = postInfo.userId;
-    if (!request.file) {
+    if (postFile === null) {
       post.type_post = Types.TEXT;
       post.path = null;
-      await post.save();
     }
-    if (request.file) {
+    if (postFile) {
       post.type_post = Types.IMAGE;
-      const postFile = request.file("file", {
-        size: "5mb",
-        extnames: ["jpg", "jpeg", "png", "gif"],
-      });
+
       if (!postFile) return;
       if (!postFile.isValid) return postInfo.errors;
 
@@ -40,7 +40,7 @@ export default class PostsController {
       const year = date.getFullYear();
       const day = date.getDate();
       const month = date.getMonth() + 1;
-      const dir = `resources/assets/post/${year}/${month}/${day}`;
+      const dir = `public/assets/post/${year}/${month}/${day}`;
 
       if (!existsSync(dir)) {
         await mkdirSync(dir, { recursive: true });
@@ -48,13 +48,13 @@ export default class PostsController {
         await postFile.move(Application.makePath(dir), {
           name: `${files.length + 1}.${postFile.extname}`,
         });
-        post.path = `resources/assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
+        post.path = `assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
       } else {
         const files = readdirSync(dir);
         await postFile.move(Application.makePath(dir), {
           name: `${files.length + 1}.${postFile.extname}`,
         });
-        post.path = `resources/assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
+        post.path = `assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
       }
     }
 

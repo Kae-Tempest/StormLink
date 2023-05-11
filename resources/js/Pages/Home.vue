@@ -1,10 +1,10 @@
 <template>
     <div class="flex">
         <NavBar />
-        <div class="grid h-screen gap-4 pt-5 grid-cols-2 mx-10 lg:grid-cols-3 grid-flow-row lg:mx-28 xl:mx-44 2xl:mx-58 3xl:mx-72 overflow-x-hidden overflow-y-auto" :class="posts.length <=4 ? 'lg:grid-rows-[325px_minmax(100px,_1fr)_100px]' : 'grid-flow-row' " id='screen'>
+        <div class="grid h-screen gap-4 pt-5 grid-cols-2 mx-10 lg:grid-cols-3 grid-flow-row lg:mx-28 xl:mx-44 2xl:mx-58 3xl:mx-72 overflow-x-hidden overflow-y-auto" :class="posts.length < 4 ? 'lg:grid-rows-[325px_minmax(100px,_1fr)_100px]' : 'grid-flow-row' " id='screen'>
             <template v-for="post in posts" class="py-4">
-                <LittlePost v-if="post.size === 'small'" :path="post.path" :type_post="post.type_post"/>
-                <LargePost v-else-if="post.size === 'large'" :path="post.path" :type_post="post.type_post"/>
+                <LittlePost v-if="post.size === 'small'" :path="post.path" :type_post="post.type_post" :description="post.description"/>
+                <LargePost v-else-if="post.size === 'large'" :path="post.path" :type_post="post.type_post" :description="post.description"/>
             </template>
         </div>
     </div>
@@ -22,8 +22,6 @@
         const { data: post } = await axios.get('/post')
         posts.value = post
     })
-
-
 
 </script>
 

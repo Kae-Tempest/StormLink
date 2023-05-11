@@ -25,7 +25,7 @@
         </label>
       </div>
       <hr class="border border-ctp-blue mt-16" />
-      <div class="flex h-32">
+      <div class="flex justify-between h-32">
         <div class="flex flex-col text-2xl my-5 mx-3">
           <label class="2xl:py-5">
             <input
@@ -53,10 +53,10 @@
             rows="5"
             placeholder="Add Description..."
             v-model="form.desc"
-            class="bg-ctp-mantle/75 2xl:p-2 rounded-xl resize-none shadow-md shadow-ctp-blue caret-ctp-blue focus:ring-2 focus:ring-ctp-blue focus:outline-none focus:shadow-none"
+            class="bg-ctp-mantle/75 2xl:p-2 my-5 mx-3.5 rounded-xl resize-none shadow-md shadow-ctp-blue caret-ctp-blue focus:ring-2 focus:ring-ctp-blue focus:outline-none focus:shadow-none"
           ></textarea>
         </div>
-        <div class="m-auto">
+        <div class="my-auto mx-5">
           <button
             type="submit"
             class="bg-ctp-blue py-5 px-7 cursor-pointer rounded-lg w-96"
@@ -72,6 +72,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import { router } from "@inertiajs/vue3";
 
 const form = reactive({
   size: null,
@@ -81,8 +82,10 @@ const form = reactive({
 });
 
 const submit = async () => {
-  await Inertia.post("/postimg", form, {
+  await Inertia.post("/posting", form, {
     forceFormData: true,
   });
+  console.log('pouet')
+  router.reload()
 };
 </script>

@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.integer("user_id").unsigned().references("id").inTable("users").notNullable();
       table.integer("type_post").unsigned().references("id").inTable("types_post");
       table.string("size").notNullable();
-      table.string("description").nullable();
+      table.text("description").nullable();
       table.string("path").nullable();
       table.integer("like").notNullable().defaultTo(0);
       /**

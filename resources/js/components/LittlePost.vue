@@ -1,5 +1,5 @@
 <template>
-    <div v-if="props.type_post === 1" class="border-2 border-ctp-blue w-full h-[323px] overflow-hidden rounded-[10px] col-span-2 lg:col-span-1">
+    <div v-if="props.type_post === 1" class="border-2 border-ctp-blue w-full h-[323px] overflow-hidden rounded-[10px] col-span-2 lg:col-span-1 break-words">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, similique molestiae? Temporibus error ratione consequuntur expedita officia suscipit rerum voluptatibus at ipsa, accusamus fuga sed. Mollitia in quod fuga commodi.
         Sunt dignissimos voluptates, explicabo quidem itaque nesciunt exercitationem fugiat sit asperiores quibusdam facilis dolorum excepturi distinctio suscipit tenetur debitis? Esse, aliquam! Necessitatibus fuga alias illo mollitia dolore consequatur odio eaque.
         Id vero, temporibus doloremque, ea est molestias provident repudiandae, laborum quia dolorem fugiat itaque magnam aperiam autem distinctio iste quis exercitationem enim sapiente? Nobis sapiente dicta modi asperiores commodi corrupti.
@@ -40,6 +40,7 @@
 interface Props {
     type_post: number
     path: string
+    description: string
 }
 
 const props = defineProps<Props>()

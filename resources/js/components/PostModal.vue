@@ -28,6 +28,7 @@
 import { ref } from 'vue'
 import ImgPostBody from './ImgPostBody.vue'
 import TextPostBody from './TextPostBody.vue'
+
 let active_el = ref(1)
 defineEmits(['update:modelValue'])
 const SwitchPostType = (el: number) => {
