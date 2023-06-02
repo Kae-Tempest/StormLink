@@ -17,18 +17,20 @@ export default class PostsController {
   public async store({ request, response }: HttpContextContract) {
     const post = new Post();
     const postInfo = request.body();
+    console.log(postInfo)
     const postFile = request.file("file", {
       size: "5mb",
       extnames: ["jpg", "jpeg", "png", "gif"],
     });
-
+    console.log(post,'post')
+    console.log(postFile, 'postFile')
     post.size = postInfo.size;
     post.description = postInfo.desc;
     post.like = 0;
     post.user_id = postInfo.userId;
     if (postFile === null) {
       post.type_post = Types.TEXT;
-      post.path = null;
+      post.path = '';
     }
     if (postFile) {
       post.type_post = Types.IMAGE;
@@ -60,7 +62,7 @@ export default class PostsController {
 
     await post.save();
 
-    return response;
+    return response.status(200);
   }
 
   public async show({}: HttpContextContract) {}

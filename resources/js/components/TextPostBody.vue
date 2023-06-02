@@ -49,9 +49,9 @@ const form = reactive({
 });
 
 const submit = async () => {
-    await Inertia.post("/posting", form, {
-        forceFormData: true,
-    });
+  Inertia.post("/posting", form, {
+    forceFormData: true,
+  });
     router.reload()
 };
 </script>
