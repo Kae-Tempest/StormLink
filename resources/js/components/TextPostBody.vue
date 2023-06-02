@@ -43,8 +43,8 @@ import {router} from "@inertiajs/vue3";
 import {reactive} from "vue";
 
 const form = reactive({
-    size: null,
-    desc: null,
+    size: '',
+    desc: '',
     userId: 1,
 });
 
