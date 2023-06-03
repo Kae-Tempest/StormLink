@@ -14,4 +14,5 @@ Inertia.share({
   errors: (ctx) => {
     return ctx.session.flashMessages.get('errors');
   },
+  params: ({ params }) => params,
 }).version(() => Inertia.manifestFile('public/assets/manifest.json'));

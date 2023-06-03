@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.integer("type_post").unsigned().references("id").inTable("types_post");
       table.string("size").notNullable();
       table.text("description").nullable();
-      table.string("path").nullable();
+      table.json("file").nullable();
       table.integer("like").notNullable().defaultTo(0);
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

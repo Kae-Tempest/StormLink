@@ -1,68 +1,38 @@
- import type {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
-import {existsSync, mkdirSync, readdirSync} from "fs";
-import Application from "@ioc:Adonis/Core/Application";
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Post from "App/Models/Post";
-import Types from "App/Enums/Types";
-import Database from "@ioc:Adonis/Lucid/Database";
+import {
+  StorePostImgValidator,
+  StorePostTextValidator,
+} from "App/Validators/StorePostImgValidator";
+import { Attachment } from "@ioc:Adonis/Addons/AttachmentLite";
 
 export default class PostsController {
   public async index({}: HttpContextContract) {
-    return Database
-        .query().from('posts')
-        .select('*');
+    return Post.all();
   }
 
   public async create({}: HttpContextContract) {}
 
   public async store({ request, response }: HttpContextContract) {
-    const post = new Post();
-    const postInfo = request.body();
-    console.log(postInfo)
-    const postFile = request.file("file", {
-      size: "5mb",
-      extnames: ["jpg", "jpeg", "png", "gif"],
-    });
-    console.log(post,'post')
-    console.log(postFile, 'postFile')
-    post.size = postInfo.size;
-    post.description = postInfo.desc;
-    post.like = 0;
-    post.user_id = postInfo.userId;
-    if (postFile === null) {
-      post.type_post = Types.TEXT;
-      post.path = '';
-    }
-    if (postFile) {
-      post.type_post = Types.IMAGE;
+    console.log(request.body());
+    if (typeof request.body().type_post === "string")
+      request.body().type_post = parseInt(request.body().type_post);
+    if (typeof request.body().user_id === "string")
+      request.body().user_id = parseInt(request.body().user_id);
 
-      if (!postFile) return;
-      if (!postFile.isValid) return postInfo.errors;
-
-      const date = new Date();
-      const year = date.getFullYear();
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const dir = `public/assets/post/${year}/${month}/${day}`;
-
-      if (!existsSync(dir)) {
-        await mkdirSync(dir, { recursive: true });
-        const files = readdirSync(`${dir}`);
-        await postFile.move(Application.makePath(dir), {
-          name: `${files.length + 1}.${postFile.extname}`,
+    switch (request.body().type_post) {
+      case 1:
+        const payloadTxt = await request.validate(StorePostTextValidator);
+        const postT = await Post.create(payloadTxt);
+        return response.created(postT);
+      case 2:
+        const payloadImg = await request.validate(StorePostImgValidator);
+        const postI = await Post.create({
+          ...payloadImg,
+          file: Attachment.fromFile(payloadImg.file),
         });
-        post.path = `assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
-      } else {
-        const files = readdirSync(dir);
-        await postFile.move(Application.makePath(dir), {
-          name: `${files.length + 1}.${postFile.extname}`,
-        });
-        post.path = `assets/post/${year}/${month}/${day}/${files.length + 1}.${postFile.extname}`;
-      }
+        return response.created(postI);
     }
-
-    await post.save();
-
-    return response.status(200);
   }
 
   public async show({}: HttpContextContract) {}

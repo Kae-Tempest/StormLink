@@ -6,6 +6,7 @@
         class="text-[#D9333C] -rotate-[9deg] z-20 -translate-x-5" />
     </div>
     <div class="text-center text-2xl">Drag photos and videos here</div>
+    <div v-if="$page.props.errors">{{ $page.props.errors }}</div>
     <form @submit.prevent="submit" action="">
       <div class="text-center mt-10 text-xl">
         <label class="bg-ctp-blue rounded-lg py-4 px-7 cursor-pointer">
@@ -26,7 +27,7 @@
           </label>
         </div>
         <div class="my-auto h-full">
-          <textarea name="PostDescription" cols="40" rows="5" placeholder="Add Description..." v-model="form.desc"
+          <textarea name="PostDescription" cols="40" rows="5" placeholder="Add Description..." v-model="form.description"
             class="bg-ctp-mantle/75 2xl:p-2 my-5 mx-3.5 rounded-xl resize-none shadow-md shadow-ctp-blue caret-ctp-blue focus:ring-2 focus:ring-ctp-blue focus:outline-none focus:shadow-none"></textarea>
         </div>
         <div class="my-auto mx-5">
@@ -42,11 +43,16 @@
 <script lang="ts" setup>
 import { router, useForm } from "@inertiajs/vue3";
 
-type Form = { size: string; file: File | undefined; desc: string; userId: number; };
-const form = useForm<Form>({ size: '', file: undefined, desc: '', userId: 1 });
+defineProps({ errors: Object })
+
+type Form = { size: string; file: File | undefined; description: string; type_post: number; user_id: number; };
+const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: 1 });
 
 const submit = async () => {
-  form.post("/posting");
-  router.reload()
+  console.log(form)
+  form.post("/posting", {
+    onSuccess: () => router.reload(),
+    // onFinish: () => { location.reload() }, 
+  });
 };
 </script>

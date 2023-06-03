@@ -1,6 +1,10 @@
 import { DateTime } from "luxon";
 import { BaseModel, column, BelongsTo, HasMany } from "@ioc:Adonis/Lucid/Orm";
 import { belongsTo, hasMany } from "@adonisjs/lucid/build/src/Orm/Decorators";
+import {
+  AttachmentContract,
+  attachment,
+} from "@ioc:Adonis/Addons/AttachmentLite";
 import User from "App/Models/User";
 import Comment from "App/Models/Comment";
 import Type from "App/Models/Type";
@@ -21,13 +25,12 @@ export default class Post extends BaseModel {
   @column()
   public description: string | null;
 
-  @column() // attachment lite ?
-  public path: string | null;
+  @attachment({ preComputeUrl: true })
+  public file: AttachmentContract | null;
 
   @column()
   public like: number;
 
-  @column()
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 
