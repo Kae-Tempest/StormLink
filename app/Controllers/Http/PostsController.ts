@@ -1,10 +1,8 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import Post from "App/Models/Post";
-import {
-  StorePostImgValidator,
-  StorePostTextValidator,
-} from "App/Validators/StorePostImgValidator";
+import StorePostImgValidator from "App/Validators/StorePostImgValidator";
+import StorePostTextValidator from "App/Validators/StorePostTextValidator";
 import { Attachment } from "@ioc:Adonis/Addons/AttachmentLite";
+import Post from "App/Models/Post";
 
 export default class PostsController {
   public async index({}: HttpContextContract) {
@@ -13,26 +11,20 @@ export default class PostsController {
 
   public async create({}: HttpContextContract) {}
 
-  public async store({ request, response }: HttpContextContract) {
-    console.log(request.body());
-    if (typeof request.body().type_post === "string")
-      request.body().type_post = parseInt(request.body().type_post);
-    if (typeof request.body().user_id === "string")
-      request.body().user_id = parseInt(request.body().user_id);
+  public async storeimg({ request, response }: HttpContextContract) {
+    const payload = await request.validate(StorePostImgValidator);
+    const post = await Post.create({
+      ...payload,
+      file: Attachment.fromFile(payload.file),
+    });
+    return response.created(post);
+  }
 
-    switch (request.body().type_post) {
-      case 1:
-        const payloadTxt = await request.validate(StorePostTextValidator);
-        const postT = await Post.create(payloadTxt);
-        return response.created(postT);
-      case 2:
-        const payloadImg = await request.validate(StorePostImgValidator);
-        const postI = await Post.create({
-          ...payloadImg,
-          file: Attachment.fromFile(payloadImg.file),
-        });
-        return response.created(postI);
-    }
+  public async storetxt({ request, response }: HttpContextContract) {
+    const payload = await request.validate(StorePostTextValidator);
+    const post = await Post.create(payload);
+    console.log(response.created(post));
+    return response.created(post);
   }
 
   public async show({}: HttpContextContract) {}

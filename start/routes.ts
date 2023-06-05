@@ -24,5 +24,6 @@ Route.get("/", async ({ inertia }) => {
   return inertia.render("Home");
 });
 
-Route.post('/posting', 'PostsController.store')
+Route.post('/postimg', 'PostsController.storeimg')
+Route.post('/posttxt', 'PostsController.storetxt')
 Route.get('/post', 'PostsController.index')

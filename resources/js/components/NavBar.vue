@@ -15,7 +15,7 @@
                 User
             </TLink>
         </div>
-      <PostModal v-if="showModal" v-model="showModal"/>
+        <PostModal v-if="showModal" v-model="showModal" />
     </div>
 </template>
 
@@ -23,16 +23,17 @@
 import PostModal from './PostModal.vue'
 import { ref } from 'vue';
 let showModal = ref(false)
-const ShowModal = async () =>{
-  showModal.value = true
+const ShowModal = async () => {
+    showModal.value = true
 }
 </script>
 
 <style>
-:root{
+:root {
     --NameWidth: 123px;
 }
-#navbar{
+
+#navbar {
     height: calc(95% - var(--NameWidth));
 }
 </style>

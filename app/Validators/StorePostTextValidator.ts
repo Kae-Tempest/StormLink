@@ -1,22 +1,13 @@
 import { schema, CustomMessages } from "@ioc:Adonis/Core/Validator";
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
-export default class StorePostImgValidator {
+export default class StorePostTextValidator {
   constructor(protected ctx: HttpContextContract) {}
   public schema = schema.create({
     user_id: schema.number(),
     size: schema.string(),
     description: schema.string(),
-    file: schema.file({
-      size: "10mb",
-      extnames: ["jpg", "gif", "png"],
-    }),
     type_post: schema.number(),
   });
-
-  public messages: CustomMessages = {
-    "file.size": "The file size must be under {{ options.size }}",
-    "file.extname":
-      "The file must have one of {{ options.extnames }} extension names",
-  };
+  public messages: CustomMessages = {};
 }

@@ -5,7 +5,5 @@
   "assets/resources_js_Pages_Home_vue.js": "http://localhost:8080/assets/resources_js_Pages_Home_vue.js",
   "assets/vendors-node_modules_axios_index_js-node_modules_vue-loader_dist_exportHelper_js.js": "http://localhost:8080/assets/vendors-node_modules_axios_index_js-node_modules_vue-loader_dist_exportHelper_js.js",
   "assets/images/TempestLogo.png": "http://localhost:8080/assets/images/TempestLogo.9f13ec21.png",
-  "assets/images/backgroundLogo1000.png": "http://localhost:8080/assets/images/backgroundLogo1000.99501804.png",
-  "assets/images/TempestLogo.9f13ec21.png": "http://localhost:8080/assets/images/TempestLogo.9f13ec21.png",
-  "assets/vendors-node_modules_inertiajs_inertia_dist_index_js-node_modules_vue-loader_dist_exportHelper_js.js": "http://localhost:8080/assets/vendors-node_modules_inertiajs_inertia_dist_index_js-node_modules_vue-loader_dist_exportHelper_js.js"
+  "assets/images/backgroundLogo1000.png": "http://localhost:8080/assets/images/backgroundLogo1000.99501804.png"
 }

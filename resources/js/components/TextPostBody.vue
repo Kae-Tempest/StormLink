@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useForm } from "@inertiajs/vue3";
+import { router, useForm } from "@inertiajs/vue3";
 
 defineProps({ errors: Object })
 
@@ -36,10 +36,6 @@ type Form = { size: string; description: string; type_post: number; user_id: num
 const form = useForm<Form>({ size: '', description: '', type_post: 1, user_id: 1 });
 
 const submit = async () => {
-    console.log(form)
-    form.post("/posting", {
-        onSuccess: page => { console.log(page, 'page') },
-        // onFinish: () => { location.reload() },
-    });
+    form.post("/posttxt");
 };
 </script>

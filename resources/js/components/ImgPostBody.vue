@@ -49,10 +49,10 @@ type Form = { size: string; file: File | undefined; description: string; type_po
 const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: 1 });
 
 const submit = async () => {
-  console.log(form)
-  form.post("/posting", {
-    onSuccess: () => router.reload(),
-    // onFinish: () => { location.reload() }, 
+  form.post("/postimg", {
+    onSuccess: page => console.log('success'),
+    onError: errors => console.log('errors'),
+    onFinish: visit => { console.log('finish') },
   });
 };
 </script>
