@@ -13,21 +13,23 @@ export default class PostsController {
 
   public async storeimg({ request, response }: HttpContextContract) {
     const payload = await request.validate(StorePostImgValidator);
-    const post = await Post.create({
+    await Post.create({
       ...payload,
       file: Attachment.fromFile(payload.file),
     });
-    return response.created(post);
+    return response.redirect("/");
   }
 
   public async storetxt({ request, response }: HttpContextContract) {
     const payload = await request.validate(StorePostTextValidator);
-    const post = await Post.create(payload);
-    console.log(response.created(post));
-    return response.created(post);
+    await Post.create(payload);
+    return response.redirect("/");
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ request }: HttpContextContract) {
+    const id = request.params().id;
+    return Post.find(id);
+  }
 
   public async edit({}: HttpContextContract) {}
 

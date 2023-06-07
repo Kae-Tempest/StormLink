@@ -24,6 +24,11 @@ Route.get("/", async ({ inertia }) => {
   return inertia.render("Home");
 });
 
+Route.get("/post/:id", async ({ inertia })=> {
+  return inertia.render('Post')
+})
+
 Route.post('/postimg', 'PostsController.storeimg')
 Route.post('/posttxt', 'PostsController.storetxt')
 Route.get('/post', 'PostsController.index')
+Route.get('/posts/:id', 'PostsController.show')

@@ -1,9 +1,9 @@
 <template>
-    <div class="bg-ctp-mantle h-screen w-[25%] font-['Arial_Black'] border-y-4 border-r-4 rounded-r-[40px] border-ctp-blue">
-        <div class="flex items-center xl:flex xl:flex-col 2xl:flex-col 3xl:flex-row">
-            <img src="../../assets/TempestLogo.png" alt="logo" class="h-[123px] w-[123px] mx-auto xl:mx-0">
+    <div class="bg-ctp-mantle h-screen w-2/12 font-['Arial_Black'] border-y-4 border-r-4 rounded-r-[40px] border-ctp-blue">
+        <TLink href="/" class="flex items-center xl:flex xl:flex-col 2xl:flex-col 3xl:flex-row">
+            <img src="../../../assets/TempestLogo.png" alt="logo" class="h-[123px] w-[123px] 3xl:h-[100px] 3xl:w-[100px] mx-auto xl:mx-0">
             <span class="font-bold hidden lg:text-xl xl:block xl:text-2xl">Tempest</span>
-        </div>
+        </TLink>
         <div class="flex flex-col justify-between h-full text-lg" id="navbar">
             <div class="flex flex-col justify-between">
                 <TLink href="/" class="py-5 mx-auto">Home</TLink>

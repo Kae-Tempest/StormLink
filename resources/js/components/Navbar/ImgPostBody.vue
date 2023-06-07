@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts" setup>
-import { router, useForm } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 
 defineProps({ errors: Object })
 
@@ -50,9 +50,7 @@ const form = useForm<Form>({ size: '', file: undefined, description: '', type_po
 
 const submit = async () => {
   form.post("/postimg", {
-    onSuccess: page => console.log('success'),
-    onError: errors => console.log('errors'),
-    onFinish: visit => { console.log('finish') },
+    onSuccess: () => location.reload(),
   });
 };
 </script>
