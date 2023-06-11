@@ -5,6 +5,7 @@
 body {
   @apply bg-ctp-base;
   color: white;
+  @apply font-['Arial_Black']
 }
 
 /* Firefox */

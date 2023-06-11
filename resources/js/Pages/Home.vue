@@ -1,7 +1,7 @@
 <template>
-    <div class="flex">
-        <NavBar />
-        <div class="grid h-screen gap-4 pt-5 grid-cols-2 mx-24 pr-1 lg:grid-cols-3 grid-flow-row overflow-x-hidden overflow-y-auto"
+    <NavBar />
+    <div class="px-10 pl-[21rem]">
+        <div class="grid h-screen gap-4 pt-5 grid-cols-2 pr-1 lg:grid-cols-3 grid-flow-row"
             :class="posts.length < 4 ? 'lg:grid-rows-[325px_minmax(100px,_1fr)_100px]' : 'grid-flow-row'" id='screen'>
             <template v-for="post in posts" class="py-4">
                 <LittlePost v-if="post.size === 'small'" :id="post.id" :file="post.file?.url" :type_post="post.type_post"
