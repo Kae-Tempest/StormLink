@@ -7,7 +7,7 @@
     </div>
     <div class="text-center text-2xl">Drag photos and videos here</div>
     <div v-if="$page.props.errors">{{ $page.props.errors }}</div>
-    <form @submit.prevent="submit" action="">
+    <form @submit.prevent="submit">
       <div class="text-center mt-10 text-xl">
         <label class="bg-ctp-blue rounded-lg py-4 px-7 cursor-pointer">
           <input @input="form.file = ($event.target as HTMLInputElement).files?.[0]" type="file" class="hidden" />
@@ -41,12 +41,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useForm } from "@inertiajs/vue3";
+import { useForm, usePage } from "@inertiajs/vue3";
+import type { user } from '../../types/type'
 
+const currentUser = usePage().props.currentUser
 defineProps({ errors: Object })
 
 type Form = { size: string; file: File | undefined; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: 1 });
+const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: (currentUser as user).id });
 
 const submit = async () => {
   form.post("/postimg", {

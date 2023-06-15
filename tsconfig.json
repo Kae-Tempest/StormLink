@@ -24,7 +24,7 @@
       ],
       "Database/*": [
         "./database/*"
-      ],
+      ]
     },
     "types": [
       "@adonisjs/core",
@@ -35,7 +35,8 @@
       "@japa/preset-adonis/build/adonis-typings",
       "@eidellev/inertia-adonisjs",
       "@adonisjs/lucid",
-      "@adonisjs/attachment-lite"
+      "@adonisjs/attachment-lite",
+      "@adonisjs/auth"
     ]
   }
 }

@@ -12,6 +12,7 @@ export default class PostsController {
   public async create({}: HttpContextContract) {}
 
   public async storeimg({ request, response }: HttpContextContract) {
+    console.log(request.body());
     const payload = await request.validate(StorePostImgValidator);
     await Post.create({
       ...payload,

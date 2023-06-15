@@ -28,12 +28,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useForm } from "@inertiajs/vue3";
+import { useForm, usePage } from "@inertiajs/vue3";
+import type { user } from '../../types/type'
 
+const currentUser = usePage().props.currentUser
 defineProps({ errors: Object })
 
 type Form = { size: string; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: '', description: '', type_post: 1, user_id: 1 });
+const form = useForm<Form>({ size: '', description: '', type_post: 1, user_id: (currentUser as user).id });
 
 const submit = async () => {
     form.post("/posttxt", {

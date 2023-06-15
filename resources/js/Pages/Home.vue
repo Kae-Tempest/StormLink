@@ -1,8 +1,8 @@
 <template>
     <NavBar />
-    <div class="px-10 pl-[21rem]">
-        <div class="grid h-screen gap-4 pt-5 grid-cols-2 pr-1 lg:grid-cols-3 grid-flow-row"
-            :class="posts.length < 4 ? 'lg:grid-rows-[325px_minmax(100px,_1fr)_100px]' : 'grid-flow-row'" id='screen'>
+    <div class="px-10 pl-[8rem] md:pl-[max(0px,17%)] z-s">
+        <div class="grid h-screen gap-4 pt-5 grid-cols-2 pr-1 lg:grid-cols-3 3.5xl:grid-cols-4 grid-flow-row-dense"
+            :class="posts.length < 4 ? 'lg:grid-rows-[325px_minmax(100px,_1fr)_100px]' : 'grid-flow-row'">
             <template v-for="post in posts" class="py-4">
                 <LittlePost v-if="post.size === 'small'" :id="post.id" :file="post.file?.url" :type_post="post.type_post"
                     :description="post.description" />
@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import NavBar from '../components/navbar/NavBar.vue'
-import LittlePost from '../components/home/LittlePost.vue'
-import LargePost from '../components/home/LargePost.vue'
+import NavBar from '../components/Navbar/NavBar.vue'
+import LittlePost from '../components/Home/LittlePost.vue'
+import LargePost from '../components/Home/LargePost.vue'
 import { ref, onMounted } from "vue";
 import ky from "ky";
 
@@ -30,10 +30,3 @@ onMounted(async () => {
 })
 
 </script>
-
-<style>
-#screen {
-    width: 100%;
-    scrollbar-width: thin;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between pl-20">
+    <div class="flex justify-between">
         <div class="flex my-auto">
             <img src="../../../assets/TempestLogo.png" alt="" class="border border-ctp-blue rounded-full w-[60px] h-fit">
             <div class=" ml-4 my-auto text-xl">
@@ -23,6 +23,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import type { user } from '../../types/type'
 import ky from 'ky'
 
 interface Props {
@@ -34,9 +35,11 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const user = ref({ username: 'Kae' })
+const user = ref<user>({ id: 0, username: '', email: '', password: '', role_id: 1, avatar: null, nb_followed: 0, nb_follower: 0, twitch_id: null, remember_me_token: null, created_at: '', updated_at: '' })
 
 onMounted(async () => {
-    const user = await ky.get(`/user/${props.user_id}`)
+    const data: user = await ky.get(`/userinfo/${props.user_id}`).json()
+    user.value = data
+
 })
 </script>

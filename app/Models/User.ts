@@ -1,10 +1,25 @@
 import { DateTime } from "luxon";
-import {BaseModel, BelongsTo, column, HasMany, HasOne} from "@ioc:Adonis/Lucid/Orm";
-import {belongsTo, hasMany, hasOne} from "@adonisjs/lucid/build/src/Orm/Decorators";
-import {attachment, AttachmentContract} from "@ioc:Adonis/Addons/AttachmentLite";
+import {
+  BaseModel,
+  beforeSave,
+  BelongsTo,
+  column,
+  HasMany,
+  HasOne,
+} from "@ioc:Adonis/Lucid/Orm";
+import {
+  belongsTo,
+  hasMany,
+  hasOne,
+} from "@adonisjs/lucid/build/src/Orm/Decorators";
+import {
+  attachment,
+  AttachmentContract,
+} from "@ioc:Adonis/Addons/AttachmentLite";
 import Post from "App/Models/Post";
 import Role from "App/Models/Role";
 import Comment from "App/Models/Comment";
+import Hash from "@ioc:Adonis/Core/Hash";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -19,6 +34,13 @@ export default class User extends BaseModel {
   @column()
   public password: string;
 
+  @beforeSave()
+  public static async hashPassword(user: User) {
+    if (user.$dirty.password) {
+      user.password = await Hash.make(user.password);
+    }
+  }
+
   @column()
   public rememberMeToken: string | null;
 
@@ -28,7 +50,7 @@ export default class User extends BaseModel {
   @column()
   public biography: string | null;
 
-  @attachment()
+  @attachment({ preComputeUrl: true })
   public avatar: AttachmentContract | null;
 
   @column()
@@ -38,7 +60,7 @@ export default class User extends BaseModel {
   public nbFollowed: number;
 
   @column()
-  public twitchId: string;
+  public twitchId: string | null;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
