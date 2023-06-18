@@ -1,20 +1,17 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
   "assets/app.js": "http://localhost:8080/assets/app.js",
-  "assets/resources_js_Pages_Home_vue-resources_js_components_navbar_NavBar_vue.css": "http://localhost:8080/assets/resources_js_Pages_Home_vue-resources_js_components_navbar_NavBar_vue.css",
-  "assets/resources_js_Pages_Home_vue-resources_js_components_navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_Pages_Home_vue-resources_js_components_navbar_NavBar_vue.js",
+  "assets/resources_js_Pages_Home_vue-resources_js_components_Navbar_NavBar_vue.css": "http://localhost:8080/assets/resources_js_Pages_Home_vue-resources_js_components_Navbar_NavBar_vue.css",
+  "assets/resources_js_Pages_Home_vue-resources_js_components_Navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_Pages_Home_vue-resources_js_components_Navbar_NavBar_vue.js",
   "assets/resources_js_Pages_Login_vue.js": "http://localhost:8080/assets/resources_js_Pages_Login_vue.js",
-  "assets/resources_js_Pages_Post_vue-resources_js_components_navbar_NavBar_vue.css": "http://localhost:8080/assets/resources_js_Pages_Post_vue-resources_js_components_navbar_NavBar_vue.css",
-  "assets/resources_js_Pages_Post_vue-resources_js_components_navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_Pages_Post_vue-resources_js_components_navbar_NavBar_vue.js",
+  "assets/resources_js_Pages_Post_vue-resources_js_components_Navbar_NavBar_vue.css": "http://localhost:8080/assets/resources_js_Pages_Post_vue-resources_js_components_Navbar_NavBar_vue.css",
+  "assets/resources_js_Pages_Post_vue-resources_js_components_Navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_Pages_Post_vue-resources_js_components_Navbar_NavBar_vue.js",
   "assets/resources_js_Pages_SignUp_vue.js": "http://localhost:8080/assets/resources_js_Pages_SignUp_vue.js",
+  "assets/resources_js_Pages_User_vue-resources_js_components_Navbar_NavBar_vue.css": "http://localhost:8080/assets/resources_js_Pages_User_vue-resources_js_components_Navbar_NavBar_vue.css",
+  "assets/resources_js_Pages_User_vue-resources_js_components_Navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_Pages_User_vue-resources_js_components_Navbar_NavBar_vue.js",
   "assets/vendors-node_modules_vue-loader_dist_exportHelper_js-node_modules_ky_distribution_index_js.js": "http://localhost:8080/assets/vendors-node_modules_vue-loader_dist_exportHelper_js-node_modules_ky_distribution_index_js.js",
-  "assets/resources_js_components_navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_components_navbar_NavBar_vue.js",
+  "assets/resources_js_components_Navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_components_Navbar_NavBar_vue.js",
   "assets/images/TempestLogo.png": "http://localhost:8080/assets/images/TempestLogo.9f13ec21.png",
   "assets/images/backgroundLogo1000.png": "http://localhost:8080/assets/images/backgroundLogo1000.99501804.png",
-  "assets/resources_js_Pages_Home_vue.css": "http://localhost:8080/assets/resources_js_Pages_Home_vue.css",
-  "assets/resources_js_Pages_Home_vue.js": "http://localhost:8080/assets/resources_js_Pages_Home_vue.js",
-  "assets/resources_js_Pages_Post_vue.css": "http://localhost:8080/assets/resources_js_Pages_Post_vue.css",
-  "assets/resources_js_Pages_Post_vue.js": "http://localhost:8080/assets/resources_js_Pages_Post_vue.js",
-  "assets/vendors-node_modules_inertiajs_inertia_dist_index_js-node_modules_vue-loader_dist_exportHelpe-85cb75.js": "http://localhost:8080/assets/vendors-node_modules_inertiajs_inertia_dist_index_js-node_modules_vue-loader_dist_exportHelpe-85cb75.js",
-  "assets/vendors-node_modules_inertiajs_inertia_dist_index_js.js": "http://localhost:8080/assets/vendors-node_modules_inertiajs_inertia_dist_index_js.js"
+  "assets/images/defaultUser.png": "http://localhost:8080/assets/images/defaultUser.cb69260f.png"
 }

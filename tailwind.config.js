@@ -6,14 +6,10 @@ module.exports = {
       screens: {
         "3xl": "1800px",
         "3.5xl": "1921px",
-        "4xl": "2600px",
+        'short': { 'raw': '(max-height: 500px)' },
+        'tall': { 'raw': '(min-height: 501px)' },
       },
     },
   },
-  plugins: [
-    require("@catppuccin/tailwindcss")({
-      prefix: "ctp",
-      defaultFlavour: "mocha",
-    }),
-  ],
+  plugins: [],
 };

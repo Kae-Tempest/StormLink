@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-ctp-base;
+  @apply bg-slate-900;
   color: white;
   @apply font-['Arial_Black']
 }
