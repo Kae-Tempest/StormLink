@@ -14,6 +14,14 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   public async handle(error: any, { response, session }: HttpContextContract) {
+    if (error.code === "E_VALIDATION_FAILURE") {
+      session.flash("errors", {
+        code: "E_VALIDATION_FAILURE",
+        msg: error.messages,
+      });
+
+      return response.redirect().back();
+    }
     if (
       ["E_INVALID_AUTH_PASSWORD", "E_INVALID_AUTH_UID"].includes(error.code)
     ) {

@@ -1,7 +1,7 @@
 <template>
   <!-- Extra Large Modal -->
   <div
-    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex bg-slate-900/75">
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex bg-base-300/75">
     <button @click="$emit('update:modelValue', false)" type="button"
       class="text-red-500 bg-transparent ml-auto text-sm p-1.5 inline-flex items-center absolute top-0 right-0">
       <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -14,13 +14,13 @@
     <div class="relative w-full h-screen max-w-2xl md:max-w-[1800px] xl:max-w-5xl 2xl:max-w-6xl 3xl:max-w-7xl py-5"
       id="modal">
       <!-- Modal content -->
-      <div class="relative rounded-sm shadow-lg bg-gray-900 h-full border-2 border-blue-900">
+      <div class="relative rounded-sm shadow-lg bg-base-300 h-full border-2 border-secondary">
         <!-- Modal header -->
-        <div class="flex items-center border-b-2 border-blue-900">
+        <div class="flex items-center border-b-2 border-secondary">
           <div class="flex justify-between w-full">
             <h3 @click="SwitchPostType(1)" class="text-xl mx-auto p-5"
               :class="{ 'text-white': active_el === 1, 'text-white/25': active_el !== 1 }" id="img">IMAGES</h3>
-            <hr class="border-l-2 border-blue-900 h-auto">
+            <hr class="border-l-2 border-secondary h-auto">
             <h3 @click="SwitchPostType(2)" class="text-xl mx-auto p-5"
               :class="{ 'text-white': active_el === 2, 'text-white/25': active_el !== 2 }" id="txt">TEXT</h3>
           </div>
@@ -35,8 +35,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import ImgPostBody from './ImgPostBody.vue'
-import TextPostBody from './TextPostBody.vue'
+import ImgPostBody from './PostModal/ImgPostBody.vue'
+import TextPostBody from './PostModal/TextPostBody.vue'
 
 let active_el = ref(1)
 defineEmits(['update:modelValue'])

@@ -169,7 +169,7 @@ Encore.configureDevServerOptions((options) => {
 | PostCSS or CSS.
 |
 */
-Encore.enablePostCssLoader()
+Encore.enablePostCssLoader();
 // Encore.configureCssLoader(() => {})
 
 /*
@@ -185,17 +185,22 @@ Encore.enableVueLoader(() => {}, {
   version: 3,
   runtimeCompilerBuild: false,
   useJsx: false,
-}).enableTypeScriptLoader(config => {
-  config.configFile = 'tsconfig.vue.json'
-}).addAliases({
-  '@': join(__dirname, 'resources/js')
-}).configureDefinePlugin(options => {
-  options['__VUE_OPTIONS_API__'] = true
-  options['__VUE_PROD_DEVTOOLS__'] = false
 })
+  .enableTypeScriptLoader((config) => {
+    config.configFile = "tsconfig.vue.json";
+  })
+  .addAliases({
+    "@": join(__dirname, "./resources/js"),
+    "~": join(__dirname, "./resources/*"),
+  })
+  .configureDefinePlugin((options) => {
+    options["__VUE_OPTIONS_API__"] = true;
+    options["__VUE_PROD_DEVTOOLS__"] = false;
+  });
 
 Encore.addAliases({
-  "@": resolve(__dirname, "resources/js"),
+  "@": resolve(__dirname, "./resources/js"),
+  "~": join(__dirname, "./resources/*"),
 });
 
 /*

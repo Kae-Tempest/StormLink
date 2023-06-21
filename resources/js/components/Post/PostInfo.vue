@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-between">
         <div class="flex my-auto">
-            <img src="../../../assets/TempestLogo.png" alt="" class="border-2 border-blue-900 rounded-full w-[60px] h-fit">
+            <img src="../../../assets/TempestLogo.png" alt="" class="border-2 border-secondary rounded-full w-[60px] h-fit">
             <div class=" ml-4 my-auto text-xl">
                 {{ user.username }}
             </div>

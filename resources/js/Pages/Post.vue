@@ -2,10 +2,10 @@
     <NavBar />
     <div class="px-10 pl-[8rem] md:pl-[max(0px,17%)] w-screen">
         <img v-if="post.file" :src="post.file.url" :alt="post.file.url"
-            class="w-full h-full max-w-[50%] rounded-sm border-2 border-blue-900 my-5 mx-auto"
+            class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-sm border-2 border-secondary my-5 mx-auto"
             :class="{ 'max-w-[35%]': post.size === 'small' }">
 
-        <div v-if="!post.file" class="text-center p-2 border-2 border-blue-900 rounded-sm mx-auto my-5">
+        <div v-if="!post.file" class="text-center p-2 border-2 border-secondary rounded-sm mx-auto my-5">
             <span class="">{{ post.description }}</span>
         </div>
 

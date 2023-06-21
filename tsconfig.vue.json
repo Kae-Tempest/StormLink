@@ -7,7 +7,6 @@
     "compilerOptions": {
       "paths": {
         "@/*": ["./resources/js"],
-        "~/*": ["./resources/"]
       }
     }
   }
