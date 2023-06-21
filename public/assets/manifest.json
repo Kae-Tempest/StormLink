@@ -13,8 +13,5 @@
   "assets/resources_js_components_Navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_components_Navbar_NavBar_vue.js",
   "assets/images/TempestLogo.png": "http://localhost:8080/assets/images/TempestLogo.9f13ec21.png",
   "assets/images/backgroundLogo1000.png": "http://localhost:8080/assets/images/backgroundLogo1000.99501804.png",
-  "assets/images/defaultUser.png": "http://localhost:8080/assets/images/defaultUser.cb69260f.png",
-  "assets/node_modules_mini-css-extract-plugin_dist_hmr_hotModuleReplacement_js-resources_js_Pages_User-040b36.css": "http://localhost:8080/assets/node_modules_mini-css-extract-plugin_dist_hmr_hotModuleReplacement_js-resources_js_Pages_User-040b36.css",
-  "assets/node_modules_mini-css-extract-plugin_dist_hmr_hotModuleReplacement_js-resources_js_Pages_User-040b36.js": "http://localhost:8080/assets/node_modules_mini-css-extract-plugin_dist_hmr_hotModuleReplacement_js-resources_js_Pages_User-040b36.js",
-  "assets/vendors-node_modules_mini-css-extract-plugin_dist_hmr_hotModuleReplacement_js-node_modules_vu-c1e98d.js": "http://localhost:8080/assets/vendors-node_modules_mini-css-extract-plugin_dist_hmr_hotModuleReplacement_js-node_modules_vu-c1e98d.js"
+  "assets/images/defaultUser.png": "http://localhost:8080/assets/images/defaultUser.cb69260f.png"
 }
