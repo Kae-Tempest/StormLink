@@ -11,6 +11,7 @@ export default class UsersController {
     const payload = await request.validate(UserValidator);
     await User.create({
       ...payload,
+      email: payload.email.toLowerCase(),
       roleId: 1,
       nbFollowed: 0,
       nbFollower: 0,
@@ -22,7 +23,7 @@ export default class UsersController {
   }
 
   public async login({ auth, request, response }: HttpContextContract) {
-    const email = await request.input("email");
+    const email = await request.input("email").toLowerCase();
     const password = await request.input("password");
     await auth.attempt(email, password);
     response.redirect("/");

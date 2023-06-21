@@ -5,7 +5,7 @@
             <TLink href="/" class="flex items-center xl:flex-col 3xl:flex-row">
                 <img src="../../../assets/TempestLogo.png" alt="logo"
                     class="h-[123px] w-[123px] 3xl:h-[100px] 3xl:w-[100px] mx-auto xl:mx-0">
-                <span class="font-bold hidden lg:text-xl xl:block xl:text-2xl">STORM</span>
+                <span class="font-bold hidden lg:text-xl xl:block xl:text-2xl 3.5xl:mx-auto 3.5xl:text-3xl">STORM</span>
             </TLink>
             <div class="short:text-sm flex flex-col text-xl flex-grow">
                 <TLink href="/" class="py-5 mx-auto">Home</TLink>
