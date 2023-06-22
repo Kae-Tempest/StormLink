@@ -16,6 +16,7 @@ export default class extends BaseSchema {
       table.string("email", 255).notNullable().unique();
       table.string("password", 180).notNullable();
       table.json("avatar").nullable();
+      table.string("bio", 255);
       table.string("remember_me_token").nullable();
       table.integer("nb_follower").defaultTo(0);
       table.integer("nb_followed").defaultTo(0);

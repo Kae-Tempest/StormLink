@@ -1,9 +1,18 @@
 <template>
   <div id="ModalBody">
-    <div class="text-9xl mt-32 mb-24 text-center w-full">
-      <font-awesome-icon :icon="['fas', 'image']" size="xl" class="text-white rotate-[19deg] z-10 translate-x-10" />
-      <font-awesome-icon :icon="['far', 'circle-play']" size="xl" class="text-white -rotate-[9deg] z-20 -translate-x-5" />
-      <!-- Changer les icons en PNG pour mettre une border -->
+    <div class="text-9xl flex my-24  m-auto w-full">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+        class="w-52 h-52 rotate-[19deg] z-10 m-auto mr-0 translate-x-10 stroke-black stroke-1">
+        <path fill-rule="evenodd"
+          d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+          clip-rule="evenodd" />
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+        class="w-52 h-52 -rotate-[9deg] z-20 m-auto ml-0 -translate-x-10 stroke-black stroke-1">
+        <path fill-rule="evenodd"
+          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm14.024-.983a1.125 1.125 0 010 1.966l-5.603 3.113A1.125 1.125 0 019 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113z"
+          clip-rule="evenodd" />
+      </svg>
     </div>
     <div class="text-center text-2xl">Drag photos and videos here</div>
     <div v-if="$page.props.errors">
@@ -16,7 +25,7 @@
           Select from computer
         </label>
       </div>
-      <hr class="border border-secondary mt-32" />
+      <hr class="border border-secondary mt-16 mb-8"/>
       <div class="flex justify-between h-32">
         <div class="flex flex-col text-2xl my-5 mx-3">
           <label class="2xl:py-5">
@@ -45,13 +54,13 @@
 <script lang="ts" setup>
 import { useForm, usePage } from "@inertiajs/vue3";
 import AlertError from "./AlertError.vue";
-import type { user } from '../../../types/type'
+import type { userType } from '../../../types/type'
 
 const currentUser = usePage().props.currentUser
 defineProps({ errors: Object })
 
 type Form = { size: string; file: File | undefined; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: (currentUser as user).id });
+const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: (currentUser as userType).id });
 
 const submit = async () => {
   form.post("/postimg", {

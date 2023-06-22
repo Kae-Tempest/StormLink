@@ -8,9 +8,9 @@
                 <!-- Modal body -->
                 <div class="text-center h-full grid grid-rows-3">
                     <span @click="logout" class="my-auto md:text-xl">Log Out</span>
-                    <TLink :href="`/user/${($page.props.currentUser as user).id}`" class="my-auto md:text-xl">Profile
+                    <TLink :href="`/user/${($page.props.currentUser as userType).id}`" class="my-auto md:text-xl">Profile
                     </TLink>
-                    <span class="my-auto md:text-xl leading-none">{{ ($page.props.currentUser as user).username }}</span>
+                    <span class="my-auto md:text-xl leading-none">{{ ($page.props.currentUser as userType).username }}</span>
                 </div>
                 <hr class="relative bottom-[50px] border-secondary mx-5">
             </div>
@@ -28,7 +28,7 @@
 </template>
   
 <script lang="ts" setup>
-import type { user } from '../../types/type'
+import type { userType } from '../../types/type'
 import { router } from '@inertiajs/vue3'
 
 const logout = async () => {

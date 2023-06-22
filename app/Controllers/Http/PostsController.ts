@@ -17,18 +17,23 @@ export default class PostsController {
       ...payload,
       file: Attachment.fromFile(payload.file),
     });
-    return response.redirect("/");
+    return response.redirect().back();
   }
 
   public async storetxt({ request, response }: HttpContextContract) {
     const payload = await request.validate(StorePostTextValidator);
     await Post.create(payload);
-    return response.redirect("/");
+    return response.redirect().back();
   }
 
   public async show({ request }: HttpContextContract) {
     const id = request.params().id;
     return Post.find(id);
+  }
+
+  public async showUser({ request }: HttpContextContract) {
+    const id = request.params().id;
+    return Post.query().where('user_id', '=', id).orderBy('created_at', 'desc')
   }
 
   public async edit({}: HttpContextContract) {}

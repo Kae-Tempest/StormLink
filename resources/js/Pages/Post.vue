@@ -21,12 +21,12 @@ import { usePage } from '@inertiajs/vue3'
 import PostInfo from '../components/Post/PostInfo.vue'
 import InputComment from '../components/Post/InputComment.vue'
 import ky from 'ky'
-import type { user } from '../types/type'
+import type { userType } from '../types/type'
 
 const currentUser = usePage().props.currentUser
 type postFile = { url: string; name: string; size: string; mimeType: string; }
 type post = { id: number; size: string; file: postFile | undefined; type_post: number; description: string; user_id: number; like: number };
-const post = ref<post>({ id: 0, size: '', file: undefined, type_post: 1, description: '', user_id: (currentUser as user).id, like: 0 })
+const post = ref<post>({ id: 0, size: '', file: undefined, type_post: 1, description: '', user_id: (currentUser as userType).id, like: 0 })
 
 onMounted(async () => {
     const params = (usePage().props.params as { id: number })

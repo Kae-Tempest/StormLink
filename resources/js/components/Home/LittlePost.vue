@@ -1,5 +1,5 @@
 <template>
-    <TLink :href="`post/${props.id}`" :key="props.id" class="col-span-2 lg:col-span-1">
+    <TLink :href="`/post/${props.id}`" :key="props.id" class="col-span-2 lg:col-span-1">
         <div v-if="props.type_post === 1"
             class="border-2 border-secondary w-full h-[323px] overflow-hidden rounded-sm flex items-center justify-center text-center overflow-y-auto">
             <span class="break-words w-full">{{ props.description }}</span>
@@ -14,7 +14,7 @@
 interface Props {
     type_post: number
     file?: string
-    description: string
+    description?: string
     id: number
 }
 

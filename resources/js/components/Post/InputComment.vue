@@ -13,9 +13,3 @@ const submit = () => {
     console.log('submit')
 }
 </script>
-
-
-
-
-<input type="text" placeholder="Send Comment..."
-class="h-full border-2 border-blue-900 rounded-[5px] bg-gray-900/75 pl-2 col-[1/1] row-[1/1]">

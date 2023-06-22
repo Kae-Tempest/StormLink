@@ -54,6 +54,9 @@ export default class User extends BaseModel {
   public avatar: AttachmentContract | null;
 
   @column()
+  public bio: string;
+
+  @column()
   public nbFollower: number;
 
   @column()

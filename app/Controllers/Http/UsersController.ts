@@ -15,6 +15,7 @@ export default class UsersController {
       roleId: 1,
       nbFollowed: 0,
       nbFollower: 0,
+      bio: '',
       avatar: null,
       rememberMeToken: null,
       twitchId: null,

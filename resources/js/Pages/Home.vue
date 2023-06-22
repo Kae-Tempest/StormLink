@@ -19,13 +19,12 @@ import LittlePost from '../components/Home/LittlePost.vue'
 import LargePost from '../components/Home/LargePost.vue'
 import { ref, onMounted } from "vue";
 import ky from "ky";
+import type { postType } from '../types/type'
 
-type postFile = { url: string; name: string; size: string; mimeType: string; }
-type post = { id: number; size: string; file: postFile | undefined; type_post: number; description: string; };
-const posts = ref<post[]>([{ id: 0, size: '', file: undefined, type_post: 1, description: '', }])
+const posts = ref<postType[]>([{ id: 0, size: '', file: undefined, type_post: 1, description: '', }])
 
 onMounted(async () => {
-    const post: post[] = await ky.get('/post').json()
+    const post: postType[] = await ky.get('/post').json()
     posts.value = post
 })
 

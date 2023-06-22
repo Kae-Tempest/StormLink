@@ -14,6 +14,7 @@ Route.group(() => {
   Route.post("/postimg", "PostsController.storeimg");
   Route.post("/posttxt", "PostsController.storetxt");
   Route.get("/postinfo/:id", "PostsController.show");
+  Route.get("/postuser/:id", "PostsController.showUser");
   Route.get("/post", "PostsController.index");
   Route.get('/userinfo/:id', 'UsersController.show')
 

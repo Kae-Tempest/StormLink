@@ -3,7 +3,7 @@
         <div class="flex my-auto">
             <img src="../../../assets/TempestLogo.png" alt="" class="border-2 border-secondary rounded-full w-[60px] h-fit">
             <div class=" ml-4 my-auto text-xl">
-                {{ user.username }}
+                {{ ($page.props.currentUser as userType).username }}
             </div>
         </div>
         <div v-if="type === 2" class="break-words text-center my-auto">
@@ -22,9 +22,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import type { user } from '../../types/type'
-import ky from 'ky'
+import type { userType } from '../../types/type'
 
 interface Props {
     user_id: number
@@ -35,11 +33,4 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const user = ref<user>({ id: 0, username: '', email: '', password: '', role_id: 1, avatar: null, nb_followed: 0, nb_follower: 0, twitch_id: null, remember_me_token: null, created_at: '', updated_at: '' })
-
-onMounted(async () => {
-    const data: user = await ky.get(`/userinfo/${props.user_id}`).json()
-    user.value = data
-
-})
 </script>
