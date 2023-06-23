@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="flex w-screen h-screen">
-            <div class="lg:w-1/4 lg:m-auto my-auto mx-5 w-full">
+            <div class="w-1/4 m-auto">
                 <div v-if="$page.props.errors">
-                    <AlertError :error="$page.props.errors.msg"/>
+                    <AlertError :error="$page.props.errors.msg" />
                 </div>
                 <form @submit.prevent="signup">
                     <AuthInput :placeholder="'Username'" :type="'text'" :iconName="['fas', 'user']"

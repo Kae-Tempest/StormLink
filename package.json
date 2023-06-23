@@ -54,11 +54,12 @@
     "ky": "^0.33.3",
     "luxon": "^3.3.0",
     "pg": "^8.10.0",
+    "pinia": "^2.1.4",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.0.0",
-    "vue": "^3.2.36",
+    "vue": "^3.3.0",
     "vue-loader": "^17.0.1"
   }
 }

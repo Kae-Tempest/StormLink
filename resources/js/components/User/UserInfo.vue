@@ -37,15 +37,23 @@
 <script setup lang="ts">
 import type { userType } from '../../types/type'
 import { usePage } from '@inertiajs/vue3';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import ky from 'ky'
 
-defineProps({ nb_post: Number, userid: Number })
+import { useStore } from '../../store/store';
+
+defineProps({ userid: Number })
 const userInfo = ref<userType>()
+const nb_post = ref<number>(0)
+
 
 onMounted(async () => {
+    const store = useStore()
     const params = (usePage().props.params as { id: number })
     const user: userType = await ky.get(`/userinfo/${params.id}`).json()
     userInfo.value = user
+    setTimeout(() => {
+        nb_post.value = store.nb_post
+    }, 1000)
 })
 </script>

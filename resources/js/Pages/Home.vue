@@ -15,8 +15,8 @@
 
 <script setup lang="ts">
 import NavBar from '../components/Navbar/NavBar.vue'
-import LittlePost from '../components/Home/LittlePost.vue'
-import LargePost from '../components/Home/LargePost.vue'
+import LittlePost from '../components/PostCard/LittlePost.vue'
+import LargePost from '../components/PostCard/LargePost.vue'
 import { ref, onMounted } from "vue";
 import ky from "ky";
 import type { postType } from '../types/type'
