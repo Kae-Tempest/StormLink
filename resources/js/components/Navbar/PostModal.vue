@@ -34,14 +34,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import ImgPostBody from './PostModal/ImgPostBody.vue'
 import TextPostBody from './PostModal/TextPostBody.vue'
+import ImgPostBody from './PostModal/ImgPostBody.vue'
+import { ref } from 'vue'
 
 let active_el = ref(1)
 defineEmits(['update:modelValue'])
-const SwitchPostType = (el: number) => {
-  active_el.value = el;
-}
-
+const SwitchPostType = (el: number) => { active_el.value = el }
 </script>

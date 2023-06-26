@@ -21,17 +21,14 @@
     </div>
 </template>
 <script lang="ts" setup >
-import AlertError from '../components/Auth/AlertError.vue';
-import AuthInput from '../components/Auth/Input.vue';
-import { useForm } from '@inertiajs/vue3';
+import AlertError from '../components/Auth/AlertError.vue'
+import AuthInput from '../components/Auth/Input.vue'
+import { useForm } from '@inertiajs/vue3'
 
 defineProps({ errors: Object })
 
 type Form = { username: string; email: string; password: string };
 const form = useForm<Form>({ username: '', email: '', password: '' });
 
-const signup = async () => {
-    form.post('/signup')
-}
-
+const signup = async () => { form.post('/signup') }
 </script>

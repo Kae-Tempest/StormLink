@@ -25,17 +25,15 @@
     </div>
 </template>
 <script setup lang="ts">
-import AuthInput from '../components/Auth/Input.vue';
-import { useForm } from '@inertiajs/vue3';
+import AuthInput from '../components/Auth/Input.vue'
+import { useForm } from '@inertiajs/vue3'
 
-defineProps({ errors: Object })
+defineProps({ errors: {} })
 
 type Form = { email: string; password: string; };
 const form = useForm<Form>({ email: '', password: '' });
 
 
-const login = async () => {
-    form.post('/login')
-}
+const login = async () => { form.post('/login') }
 
 </script>

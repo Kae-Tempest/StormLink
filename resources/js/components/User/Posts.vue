@@ -13,19 +13,18 @@
 import LittlePost from '../PostCard/LittlePost.vue'
 import LargePost from '../PostCard/LargePost.vue'
 import type { postType } from '../../types/type'
-import { usePage } from '@inertiajs/vue3';
-import { ref, onMounted } from "vue";
-import ky from "ky";
+import { useStore } from '../../store/store'
+import { usePage } from '@inertiajs/vue3'
+import { ref, onMounted } from "vue"
+import ky from "ky"
 
-import { useStore } from '../../store/store';
 
 const posts = ref<postType[]>([])
 
 onMounted(async () => {
     const store = useStore()
     const params = (usePage().props.params as { id: number })
-    const post: postType[] = await ky.get(`/postuser/${params.id}`).json()
-    posts.value = post
-    store.nb_post = post.length
+    posts.value = await ky.get(`/postuser/${params.id}`).json()
+    store.nb_post = posts.value.length
 })
 </script>

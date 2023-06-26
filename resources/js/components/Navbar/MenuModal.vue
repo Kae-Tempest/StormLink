@@ -10,7 +10,8 @@
                     <span @click="logout" class="my-auto md:text-xl">Log Out</span>
                     <TLink :href="`/user/${($page.props.currentUser as userType).id}`" class="my-auto md:text-xl">Profile
                     </TLink>
-                    <span class="my-auto md:text-xl leading-none">{{ ($page.props.currentUser as userType).username }}</span>
+                    <span class="my-auto md:text-xl leading-none">{{ ($page.props.currentUser as userType).username
+                    }}</span>
                 </div>
                 <hr class="relative bottom-[50px] border-secondary mx-5">
             </div>
@@ -30,8 +31,5 @@
 <script lang="ts" setup>
 import type { userType } from '../../types/type'
 import { router } from '@inertiajs/vue3'
-
-const logout = async () => {
-    router.post('/logout')
-}
+const logout = async () => { router.post('/logout') }
 </script>

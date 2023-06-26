@@ -1,17 +1,18 @@
 export type userType = {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  role_id: number;
+  // @ts-ignore
   avatar: File | null;
   bio: string;
-  nb_follower: number;
-  nb_followed: number;
-  twitch_id: string | null;
-  remember_me_token: boolean | null;
   created_at: string;
+  email: string;
+  id: number;
+  nb_followed: number;
+  nb_follower: number;
+  password: string;
+  remember_me_token: boolean | null;
+  role_id: number;
+  twitch_id: string | null;
   updated_at: string;
+  username: string;
 };
 
 type postFile = {
@@ -23,8 +24,10 @@ type postFile = {
 
 export type postType = {
   id: number;
+  user_id: number;
   size: string;
   file: postFile | undefined;
   type_post: number;
   description: string;
+  like: number;
 };

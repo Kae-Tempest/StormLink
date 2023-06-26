@@ -15,9 +15,6 @@
 
 
 <script setup lang="ts">
-interface props {
-    error: Object,
-}
-
+interface props { error: Object }
 const props = defineProps<props>()
 </script>

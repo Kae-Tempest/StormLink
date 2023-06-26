@@ -15,22 +15,21 @@
     </div>
 </template>
 <script setup lang="ts">
-import NavBar from '../components/Navbar/NavBar.vue'
-import { onMounted, ref } from 'vue';
-import { usePage } from '@inertiajs/vue3'
-import PostInfo from '../components/Post/PostInfo.vue'
 import InputComment from '../components/Post/InputComment.vue'
+import type { userType, postType } from '../types/type'
+import PostInfo from '../components/Post/PostInfo.vue'
+import NavBar from '../components/Navbar/NavBar.vue'
+import { usePage } from '@inertiajs/vue3'
+import { onMounted, ref } from 'vue'
 import ky from 'ky'
-import type { userType } from '../types/type'
 
 const currentUser = usePage().props.currentUser
 type postFile = { url: string; name: string; size: string; mimeType: string; }
 type post = { id: number; size: string; file: postFile | undefined; type_post: number; description: string; user_id: number; like: number };
-const post = ref<post>({ id: 0, size: '', file: undefined, type_post: 1, description: '', user_id: (currentUser as userType).id, like: 0 })
+const post = ref<postType>({ id: 0, size: '', file: undefined, type_post: 1, description: '', user_id: (currentUser as userType).id, like: 0 })
 
 onMounted(async () => {
     const params = (usePage().props.params as { id: number })
-    const postInfo: post = await ky.get(`/postinfo/${params.id}`).json()
-    post.value = postInfo
+    post.value = await ky.get(`/postinfo/${params.id}`).json()
 })
 </script>
