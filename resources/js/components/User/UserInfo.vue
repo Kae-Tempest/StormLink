@@ -1,7 +1,10 @@
 <template>
     <div class="h-1/5 border-b-2 border-secondary">
         <div class="flex h-full items-center justify-evenly">
-            <img src="../../../assets/defaultUser.png" alt="" class="border rounded-full w-32 mt-2 ml-4">
+            <img v-if="userInfo?.avatar" :src="userInfo?.avatar?.url" alt=""
+                class="border border-secondary rounded-full w-32 mt-2 ml-4">
+            <img v-else src="../../../assets/defaultUser.png" alt=""
+                class="border border-secondary rounded-full w-32 mt-2 ml-4">
             <div class="mx-auto text-4xl">
                 {{ userInfo?.username }}
             </div>
@@ -12,8 +15,8 @@
                         <span class="label-text-alt">{{ userInfo?.nb_followed }} Followed</span>
                         <span class="label-text-alt">{{ userInfo?.nb_follower }} Followers</span>
                     </label>
-                    <p class="w-60 h-24 border border-secondary rounded-md bg-base-200/[35] text-xs">{{
-                        ($page.props.currentUser as userType).bio || 'aucune bio' }}</p>
+                    <p class="w-60 h-24 border border-secondary rounded-md bg-base-200/[35] text-xs p-1">{{
+                        userInfo?.bio || 'any bio' }}</p>
                     <div class="label">
                         <button class="btn btn-sm"
                             :class="($page.props.currentUser as userType).id == userid ? 'btn-disabled border border-secondary' : 'btn-secondary'">Follow</button>
@@ -40,6 +43,7 @@ import ky from 'ky'
 defineProps({ userid: Number })
 const userInfo = ref<userType>()
 const nb_post = ref<number>(0)
+const currentUser = usePage().props.currentUser
 
 onMounted(async () => {
     const store = useStore()

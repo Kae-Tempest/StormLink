@@ -13,10 +13,14 @@ Route.post("logout", "UsersController.logout");
 Route.group(() => {
   Route.post("/postimg", "PostsController.storeimg");
   Route.post("/posttxt", "PostsController.storetxt");
+  Route.post("/usersettings/:id", "UsersController.edit");
+  Route.post("/comment", "CommentsController.store");
+
   Route.get("/postinfo/:id", "PostsController.show");
   Route.get("/postuser/:id", "PostsController.showUser");
   Route.get("/post", "PostsController.index");
-  Route.get('/userinfo/:id', 'UsersController.show')
+  Route.get("/userinfo/:id", "UsersController.show");
+  Route.get('/comment/:id', "CommentsController.show")
 
   Route.get("/", async ({ inertia }) => {
     return inertia.render("Home");

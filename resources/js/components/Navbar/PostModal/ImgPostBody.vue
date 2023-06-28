@@ -60,7 +60,7 @@ const currentUser = usePage().props.currentUser
 defineProps({ errors: Object })
 
 type Form = { size: string; file: File | undefined; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: '', file: undefined, description: '', type_post: 2, user_id: (currentUser as userType).id });
+const form = useForm<Form>({ size: 'small', file: undefined, description: '', type_post: 2, user_id: (currentUser as userType).id });
 
 const submit = async () => {
   form.post("/postimg", {

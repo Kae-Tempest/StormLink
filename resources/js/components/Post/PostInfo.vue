@@ -1,7 +1,11 @@
 <template>
     <div class="flex justify-between">
         <div class="flex my-auto">
-            <img src="../../../assets/TempestLogo.png" alt="" class="border-2 border-secondary rounded-full w-[60px] h-fit">
+            <img v-if="($page.props.currentUser as userType).avatar" alt=""
+                :src="($page.props.currentUser as userType).avatar?.url"
+                class="border-2 border-secondary rounded-full w-[60px] h-fit"> <!-- put correct user avatar -->
+            <img v-else src="../../../assets/defaultUser.png" alt=""
+                class="border-2 border-secondary rounded-full w-[60px] h-fit">
             <div class=" ml-4 my-auto text-xl">
                 {{ ($page.props.currentUser as userType).username }}
             </div>
@@ -16,12 +20,15 @@
             </div>
             <div>
                 <font-awesome-icon :icon="['far', 'message']" size="2xl" class="px-5" />
-                <span>0</span>
+                <span>{{ comments.length }}</span>
             </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
+import ky from 'ky';
+import { onMounted, ref } from 'vue';
 import type { userType } from '../../types/type'
 
 interface Props {
@@ -33,4 +40,12 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+type Comment = { id: number; content: string; user_id: number; post_id: number; like: number; created_at: string }
+const comments = ref<Comment[]>([])
+
+onMounted( async () => {
+    const params = (usePage().props.params as { id: number })
+    comments.value = await ky.get(`/comment/${params.id}`).json()
+})
 </script>

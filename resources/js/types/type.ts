@@ -1,6 +1,6 @@
 export type userType = {
   // @ts-ignore
-  avatar: File | null;
+  avatar: FileType | undefined;
   bio: string;
   created_at: string;
   email: string;
@@ -15,7 +15,7 @@ export type userType = {
   username: string;
 };
 
-type postFile = {
+type FileType = {
   url: string;
   name: string;
   size: string;
@@ -26,7 +26,7 @@ export type postType = {
   id: number;
   user_id: number;
   size: string;
-  file: postFile | undefined;
+  file: FileType | undefined;
   type_post: number;
   description: string;
   like: number;

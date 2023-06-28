@@ -1,8 +1,8 @@
 <template>
     <div id="ModalBody">
-        <form @submit.prevent="submit" action="">
+        <form @submit.prevent="submit">
             <div v-if="$page.props.errors">
-                <AlertError :error="$page.props.errors['msg']" />
+                <AlertError :error="$page.props.errors.msg" />
             </div>
             <textarea v-model="form.description" rows="22"
                 class="my-5 mx-28 h-full w-5/6 text-white border-2 border-primary bg-primary/25 resize-none outline outline-none rounded-sm p-2"
@@ -39,7 +39,7 @@ const currentUser = usePage().props.currentUser
 defineProps({ errors: Object })
 
 type Form = { size: string; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: '', description: '', type_post: 1, user_id: (currentUser as userType).id });
+const form = useForm<Form>({ size: 'small', description: '', type_post: 1, user_id: (currentUser as userType).id });
 
 const submit = async () => { form.post("/posttxt", { onSuccess: () => location.reload() }) };
 </script>

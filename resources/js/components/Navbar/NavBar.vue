@@ -12,11 +12,12 @@
                 <TLink href="/chat" class="btn btn-ghost text-lg short:text-sm my-2.5">Chat</TLink>
                 <PostModal />
             </div>
-            <div class="h-16 w-16 mx-auto mb-8 short:mb-2" @click="ShowMenu()">
-                <img v-if="($page.props.currentUser as userType).avatar" alt="" src="" class="border rounded-full">
+            <div class="h-16 w-20 mx-auto mb-8 short:mb-2" @click="ShowMenu()">
+                <img v-if="($page.props.currentUser as userType).avatar" alt=""
+                    :src="($page.props.currentUser as userType).avatar?.url" class="border border-secondary rounded-full">
                 <img v-else src="../../../assets/defaultUser.png" alt="" class="border rounded-full short:w-10 mx-auto">
             </div>
-            <MenuModal v-if="showMenu" v-model="showMenu"/>
+            <MenuModal v-if="showMenu" v-model="showMenu" />
         </nav>
     </div>
 </template>

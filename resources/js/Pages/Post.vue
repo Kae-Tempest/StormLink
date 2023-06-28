@@ -1,23 +1,28 @@
 <template>
-    <NavBar />
-    <div class="px-10 pl-[8rem] md:pl-[max(0px,17%)] w-screen">
-        <img v-if="post.file" :src="post.file.url" :alt="post.file.url"
-            class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-sm border-2 border-secondary my-5 mx-auto"
-            :class="{ 'max-w-[35%]': post.size === 'small' }">
-
-        <div v-if="!post.file" class="text-center p-2 border-2 border-secondary rounded-sm mx-auto my-5">
-            <span class="">{{ post.description }}</span>
+    <div>
+        <NavBar />
+        <div class="pr-10 pl-[8rem] md:pl-[max(0px,17%)]">
+            <img v-if="post.file" :src="post.file.url" :alt="post.file.url"
+                class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-sm border-2 border-secondary my-5 mx-auto"
+                :class="{ 'max-w-[35%]': post.size === 'small' }">
+    
+            <div v-if="!post.file" class="text-center p-2 border-2 border-secondary rounded-sm mx-auto my-5">
+                <span class="">{{ post.description }}</span>
+            </div>
+    
+            <PostInfo :user_id="post.user_id" :like="post.like" :desc="post.description || ''" :size="post.size"
+                :type="post.type_post" />
+            <InputComment />
+    
+            <Comment />
         </div>
-
-        <PostInfo :user_id="post.user_id" :like="post.like" :desc="post.description" :size="post.size"
-            :type="post.type_post" />
-        <InputComment />
     </div>
 </template>
 <script setup lang="ts">
 import InputComment from '../components/Post/InputComment.vue'
 import type { userType, postType } from '../types/type'
 import PostInfo from '../components/Post/PostInfo.vue'
+import Comment from '../components/Post/Comment.vue'
 import NavBar from '../components/Navbar/NavBar.vue'
 import { usePage } from '@inertiajs/vue3'
 import { onMounted, ref } from 'vue'

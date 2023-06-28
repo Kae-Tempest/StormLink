@@ -10,5 +10,8 @@
   "assets/resources_js_components_Navbar_NavBar_vue.js": "http://localhost:8080/assets/resources_js_components_Navbar_NavBar_vue.js",
   "assets/images/TempestLogo.png": "http://localhost:8080/assets/images/TempestLogo.9f13ec21.png",
   "assets/images/backgroundLogo1000.png": "http://localhost:8080/assets/images/backgroundLogo1000.99501804.png",
-  "assets/images/defaultUser.png": "http://localhost:8080/assets/images/defaultUser.cb69260f.png"
+  "assets/images/defaultUser.png": "http://localhost:8080/assets/images/defaultUser.cb69260f.png",
+  "assets/vendors-node_modules_inertiajs_inertia-vue3_dist_index_js.js": "http://localhost:8080/assets/vendors-node_modules_inertiajs_inertia-vue3_dist_index_js.js",
+  "assets/vendors-node_modules_inertiajs_inertia_dist_index_js.js": "http://localhost:8080/assets/vendors-node_modules_inertiajs_inertia_dist_index_js.js",
+  "assets/resources_js_components_Navbar_NavBar_vue-resources_js_components_PostCard_LargePost_vue-reso-f5bea7.js": "http://localhost:8080/assets/resources_js_components_Navbar_NavBar_vue-resources_js_components_PostCard_LargePost_vue-reso-f5bea7.js"
 }

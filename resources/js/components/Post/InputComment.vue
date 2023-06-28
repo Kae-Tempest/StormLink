@@ -1,6 +1,6 @@
 <template>
     <div class="grid h-fit my-5">
-        <input type="text" placeholder="Send Comment..."
+        <input v-model="form.content" type="text" placeholder="Send Comment..."
             class="input input-bordered input-primary pl-2 col-[1/1] row-[1/1]">
         <button class="bg-primary rounded-[5px] py-2 px-5 ml-auto col-[1/1] row-[1/1]" @click="submit()">
             <font-awesome-icon :icon="['fas', 'paper-plane']" size="xl" />
@@ -9,7 +9,16 @@
 </template>
 
 <script setup lang="ts">
+import { useForm, usePage } from '@inertiajs/vue3'
+import type { userType } from '../../types/type'
+
+const currentUser = usePage().props.currentUser
+const params = (usePage().props.params as { id: number })
+
+type Form = { content: string; user_id: number; like: number; post_id: number }
+const form = useForm<Form>({ content: '', user_id: (currentUser as userType).id, like: 0, post_id: params.id })
+
 const submit = () => {
-    console.log('submit')
+    form.post('/comment')
 }
 </script>
