@@ -4,11 +4,10 @@
             id="modal">
             <div class="relative rounded-sm shadow-lg bg-base-200 h-full border-2 border-secondary">
                 <div class="text-center h-full grid grid-rows-3">
-                    <span @click="logout" class="my-auto md:text-xl">Log Out</span>
-                    <TLink :href="`/user/${($page.props.currentUser as userType).id}`" class="my-auto md:text-xl">Profile
+                    <span @click="logout" class="my-auto md:text-xl cursor-pointer">Log Out</span>
+                    <TLink :href="`/user/${props.user.id}`" class="my-auto md:text-xl">Profile
                     </TLink>
-                    <span class="my-auto md:text-xl leading-none">{{ ($page.props.currentUser as userType).username
-                    }}</span>
+                    <span class="my-auto md:text-xl leading-none">{{ props.user.username }}</span>
                 </div>
                 <hr class="relative bottom-[50px] border-secondary mx-5">
             </div>
@@ -26,8 +25,9 @@
 </template>
   
 <script lang="ts" setup>
-import type { userType } from '../../types/type'
 import { router } from '@inertiajs/vue3'
+
+const props = defineProps({ user: Object })
 const logout = async () => { router.post('/logout') }
 </script>
  

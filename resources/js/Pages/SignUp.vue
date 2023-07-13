@@ -2,8 +2,8 @@
     <div>
         <div class="flex w-screen h-screen">
             <div class="w-1/4 m-auto">
-                <div v-if="$page.props.errors">
-                    <AlertError :error="$page.props.errors.msg" />
+                <div v-if="props.errors.msg">
+                    <AlertError :error="props.errors.msg" />
                 </div>
                 <form @submit.prevent="signup">
                     <AuthInput :placeholder="'Username'" :type="'text'" :iconName="['fas', 'user']"
@@ -25,7 +25,7 @@ import AlertError from '../components/Auth/AlertError.vue'
 import AuthInput from '../components/Auth/Input.vue'
 import { useForm } from '@inertiajs/vue3'
 
-defineProps({ errors: Object })
+const props = defineProps({ errors: Object })
 
 type Form = { username: string; email: string; password: string };
 const form = useForm<Form>({ username: '', email: '', password: '' });

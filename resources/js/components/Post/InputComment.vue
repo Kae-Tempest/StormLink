@@ -9,14 +9,16 @@
 </template>
 
 <script setup lang="ts">
-import { useForm, usePage } from '@inertiajs/vue3'
-import type { userType } from '../../types/type'
+import { useForm } from '@inertiajs/vue3'
+interface Props {
+  user: Object
+  post_id: number
+}
 
-const currentUser = usePage().props.currentUser
-const params = (usePage().props.params as { id: number })
+const props = defineProps<Props>()
 
-type Form = { content: string; user_id: number; like: number; post_id: number }
-const form = useForm<Form>({ content: '', user_id: (currentUser as userType).id, like: 0, post_id: params.id })
+type Form = { content: string; post_id: number }
+const form = useForm<Form>({ content: '', post_id: props.post_id })
 
 const submit = () => {
     form.post('/comment')

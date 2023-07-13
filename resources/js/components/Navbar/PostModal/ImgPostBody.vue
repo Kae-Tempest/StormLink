@@ -15,9 +15,6 @@
       </svg>
     </div>
     <div class="text-center text-2xl">Drag photos and videos here</div>
-    <div v-if="$page.props.errors">
-      <AlertError :error="$page.props.errors.msg" />
-    </div>
     <form @submit.prevent="submit">
       <div class="text-center mt-10 text-xl">
         <label class="bg-primary rounded-sm py-4 px-7 cursor-pointer">
@@ -29,11 +26,11 @@
       <div class="flex justify-between h-32">
         <div class="flex flex-col text-2xl my-5 mx-3">
           <label class="py-5">
-            <input name="PostSize" type="radio" value="small" v-model="form.size" checked="true"
+            <input name="PostSize" type="radio" value="1" v-model="form.size"
               class="checkbox checkbox-secondary mr-2 my-auto" />Small
           </label>
           <label class="py-5">
-            <input name="PostSize" type="radio" value="large" v-model="form.size"
+            <input name="PostSize" type="radio" value="2" v-model="form.size"
               class="checkbox checkbox-secondary mr-2 my-auto" />Large
           </label>
         </div>
@@ -52,18 +49,16 @@
 </template>
 
 <script lang="ts" setup>
-import type { userType } from '../../../types/type'
-import { useForm, usePage } from "@inertiajs/vue3"
-import AlertError from "./AlertError.vue"
+import { useForm } from "@inertiajs/vue3"
 
-const currentUser = usePage().props.currentUser
-defineProps({ errors: Object })
+const props = defineProps({ userId: Number})
 
-type Form = { size: string; file: File | undefined; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: 'small', file: undefined, description: '', type_post: 2, user_id: (currentUser as userType).id });
+type Form = { size: string; file: File | undefined; description: string; user_id: number; };
+const form = useForm<Form>({ size: '', file: undefined, description: '', user_id: props.userId });
 
 const submit = async () => {
-  form.post("/postimg", {
+  console.log(form.size)
+  form.post("/postI", {
     onSuccess: () => location.reload(),
   });
 };

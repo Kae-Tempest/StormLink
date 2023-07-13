@@ -1,6 +1,9 @@
 <template>
   <button class="btn btn-ghost text-lg my-2.5" onclick="postmodal.showModal()">Post</button>
   <dialog id="postmodal" class="modal text-white bg-base-300/50">
+    <div v-if="props.errors">
+      <AlertError :error="props.errors" />
+    </div>
     <form method="dialog"
       class="modal-box w-11/12 max-w-7xl h-fit p-2 bg-base-300 border-2 border-secondary overflow-hidden">
       <div class="relative rounded-sm shadow-lg h-full pb-6">
@@ -13,8 +16,8 @@
               :class="{ 'text-white': active_el === 2, 'text-white/25': active_el !== 2 }" id="txt">TEXT</h3>
           </div>
         </div>
-        <ImgPostBody v-if="active_el === 1" class="active" />
-        <TextPostBody v-else />
+        <ImgPostBody v-if="active_el === 1" class="active" :userId="props.user.id"/>
+        <TextPostBody v-else :userId="props.user.id"/>
       </div>
       <div class="modal-action">
         <button class="btn btn-ghost border-none outline-none text-red-500 text-sm p-1.5 absolute top-0 right-0">
@@ -34,6 +37,9 @@
 import TextPostBody from './PostModal/TextPostBody.vue'
 import ImgPostBody from './PostModal/ImgPostBody.vue'
 import { ref } from 'vue'
+import AlertError from "./PostModal/AlertError.vue";
+
+const props = defineProps({ errors: Object, user: Object})
 
 let active_el = ref(1)
 const SwitchPostType = (el: number) => { active_el.value = el }

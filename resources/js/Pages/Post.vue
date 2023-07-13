@@ -1,40 +1,29 @@
 <template>
-    <div>
-        <NavBar />
-        <div class="pr-10 pl-[8rem] md:pl-[max(0px,17%)]">
-            <img v-if="post.file" :src="post.file.url" :alt="post.file.url"
-                class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-sm border-2 border-secondary my-5 mx-auto"
-                :class="{ 'max-w-[35%]': post.size === 'small' }">
-    
-            <div v-if="!post.file" class="text-center p-2 border-2 border-secondary rounded-sm mx-auto my-5">
-                <span class="">{{ post.description }}</span>
+    <div class="w-full">
+        <NavBar :user="props.ConnectUser"/>
+        <div class="pr-10 pl-[8rem] md:pl-[max(0px,16%)] pt-5">
+            <img v-if="props.post.file" :src="props.post.file" :alt="props.post.file"
+                class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-sm border-2 border-secondary mb-5 mx-auto"
+                :class="{ 'max-w-[35%]': props.post.size === 'small' }">
+
+            <div v-if="!props.post.file" class="text-center p-2 border-2 border-secondary rounded-sm mx-auto my-5">
+                <span class="">{{ props.post.description }}</span>
             </div>
-    
-            <PostInfo :user_id="post.user_id" :like="post.like" :desc="post.description || ''" :size="post.size"
-                :type="post.type_post" />
-            <InputComment />
-    
-            <Comment />
+
+            <PostInfo :like="props.post.like" :desc="props.post.description || ''" :size="props.post.size"
+                :type="props.post.type_post" :user="props.post.user"/>
+            <InputComment :user="props.post.user" :post_id="props.post.id"/>
+
+            <Comment :comments="props.comments"/>
         </div>
     </div>
 </template>
-<script setup lang="ts">
+<script setup>
 import InputComment from '../components/Post/InputComment.vue'
-import type { userType, postType } from '../types/type'
 import PostInfo from '../components/Post/PostInfo.vue'
 import Comment from '../components/Post/Comment.vue'
 import NavBar from '../components/Navbar/NavBar.vue'
-import { usePage } from '@inertiajs/vue3'
-import { onMounted, ref } from 'vue'
-import ky from 'ky'
 
-const currentUser = usePage().props.currentUser
-type postFile = { url: string; name: string; size: string; mimeType: string; }
-type post = { id: number; size: string; file: postFile | undefined; type_post: number; description: string; user_id: number; like: number };
-const post = ref<postType>({ id: 0, size: '', file: undefined, type_post: 1, description: '', user_id: (currentUser as userType).id, like: 0 })
+const props = defineProps({post: Object, comments: Object, ConnectUser: Object})
 
-onMounted(async () => {
-    const params = (usePage().props.params as { id: number })
-    post.value = await ky.get(`/postinfo/${params.id}`).json()
-})
 </script>

@@ -1,9 +1,6 @@
 <template>
     <div id="ModalBody">
         <form @submit.prevent="submit">
-            <div v-if="$page.props.errors">
-                <AlertError :error="$page.props.errors.msg" />
-            </div>
             <textarea v-model="form.description" rows="22"
                 class="my-5 mx-28 h-full w-5/6 text-white border-2 border-primary bg-primary/25 resize-none outline outline-none rounded-sm p-2"
                 placeholder="Add Text ..." />
@@ -11,11 +8,11 @@
             <div class="flex justify-between h-32">
                 <div class="flex flex-col text-2xl my-5 mx-3">
                     <label class="py-5">
-                        <input name="PostSize" type="radio" value="small" v-model="form.size" checked="true"
+                        <input name="PostSize" type="radio" value="1" v-model="form.size"
                             class="checkbox checkbox-secondary mr-2 my-auto" />Small
                     </label>
                     <label class="py-5">
-                        <input name="PostSize" type="radio" value="large" v-model="form.size"
+                        <input name="PostSize" type="radio" value="2" v-model="form.size"
                             class="checkbox checkbox-secondary mr-2 my-auto" />Large
                     </label>
                 </div>
@@ -30,16 +27,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { userType } from '../../../types/type'
-import { useForm, usePage } from "@inertiajs/vue3"
-import AlertError from "./AlertError.vue"
+import { useForm } from "@inertiajs/vue3"
+const props = defineProps({ userId: Number})
 
+type Form = { size: string; description: string; user_id: number; };
+const form = useForm<Form>({ size: '', description: '', user_id: props.userId });
 
-const currentUser = usePage().props.currentUser
-defineProps({ errors: Object })
-
-type Form = { size: string; description: string; type_post: number; user_id: number; };
-const form = useForm<Form>({ size: 'small', description: '', type_post: 1, user_id: (currentUser as userType).id });
-
-const submit = async () => { form.post("/posttxt", { onSuccess: () => location.reload() }) };
+const submit = async () => { form.post("/postT", { onSuccess: () => location.reload() }) };
 </script>

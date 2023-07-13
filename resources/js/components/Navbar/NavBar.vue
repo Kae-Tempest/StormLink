@@ -10,23 +10,24 @@
                 <TLink href="/" class="btn btn-ghost text-lg short:text-sm my-2.5">Home</TLink>
                 <TLink href="/search" class="btn btn-ghost text-lg short:text-sm my-2.5">Search</TLink>
                 <TLink href="/chat" class="btn btn-ghost text-lg short:text-sm my-2.5">Chat</TLink>
-                <PostModal />
+                <PostModal :errors="props.errors" :user="props.user"/>
             </div>
             <div class="h-16 w-20 mx-auto mb-8 short:mb-2" @click="ShowMenu()">
-                <img v-if="($page.props.currentUser as userType).avatar" alt=""
-                    :src="($page.props.currentUser as userType).avatar?.url" class="border border-secondary rounded-full">
-                <img v-else src="../../../assets/defaultUser.png" alt="" class="border rounded-full short:w-10 mx-auto">
+                <img v-if="props.user.avatar" alt=""
+                    :src="props.user.avatar" class="border border-secondary rounded-full">
+                <img v-else src="@@/defaultUser.png" alt="" class="border rounded-full short:w-10 mx-auto">
             </div>
-            <MenuModal v-if="showMenu" v-model="showMenu" />
+            <MenuModal v-if="showMenu" v-model="showMenu" :user="props.user"/>
         </nav>
     </div>
 </template>
 
 <script setup lang="ts">
-import type { userType } from '../../types/type'
 import PostModal from './PostModal.vue'
 import MenuModal from './MenuModal.vue'
 import { ref } from 'vue'
+
+const props = defineProps({ user: Object, errors: Object })
 
 let showMenu = ref(false)
 

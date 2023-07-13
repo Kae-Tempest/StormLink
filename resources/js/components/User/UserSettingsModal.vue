@@ -9,33 +9,32 @@
     </svg>
   </div>
   <dialog id="userSettings" class="modal text-white bg-base-300/50">
-    <form method="dialog" class="modal-box w-full h-5/6 max-w-7xl border-2 border-secondary">
+    <div v-if="props.errors.msg">
+      <AlertError :error="props.errors.msg" />
+    </div>
+    <form method="dialog" class="modal-box w-full h-5/6 max-w-7xl border-2 border-secondary bg-base-300">
       <form @submit.prevent="submit">
-        <div v-if="$page.props.errors">
-          <AlertError :error="$page.props.errors.msg" />
-        </div>
         <label class="cursor-pointer w-16 flex items-center">
           <input @input="form.avatar = ($event.target as HTMLInputElement).files?.[0]" type="file" class="hidden" />
-          <img v-if="(currentUser as userType).avatar" :src="(currentUser as userType).avatar?.url" alt=""
+          <img v-if="props.user.avatar" :src="props.user.avatar" alt=""
             class="border border-secondary rounded-full">
-          <img v-else src="../../../assets/defaultUser.png" alt="" class="border border-secondary rounded-full">
-          <span class="text-2xl ml-[1rem]">{{ (currentUser as userType).username }}</span>
+          <img v-else src="/assets/defaultUser.png" alt="" class="border border-secondary rounded-full">
+          <span class="text-2xl ml-[1rem]">{{ props.user.username }}</span>
         </label>
-        <div class="mt-16 flex flex-col">
+        <div class="mt-4 flex flex-col">
           <div class="my-5 flex items-center">
             <label class="w-32 mr-3 text-right">Username</label>
-            <input type="text" :placeholder="(currentUser as userType).username"
+            <input type="text" :placeholder="props.user.username"
               class="input input-bordered input-primary w-full max-w-xl" v-model="form.username" />
           </div>
           <div class="my-5 flex items-center">
             <label class="w-32 mr-3 text-right">Bio</label>
-            <textarea type="text" :placeholder="(currentUser as userType).bio || 'any bio'"
+            <textarea type="text" :placeholder="props.user.bio || 'any bio'"
               class="textarea textarea-primary textarea-lg w-full max-w-xl resize-none" v-model="form.bio" />
           </div>
           <div class="my-5 flex items-center">
             <label class="w-32 mr-3 text-right">Email</label>
-            <p class="w-full max-w-xl h-[3rem] border border-primary rounded-md text-white/60 flex items-center">{{
-              ($page.props.currentUser as userType).email }}</p>
+            <p class="w-full max-w-xl h-[3rem] border border-primary rounded-md text-white/60 flex items-center">{{ props.user.email }}</p>
           </div>
           <div class="my-5 flex items-center mt-12">
             <label class="w-32 mr-3 text-right">Old password</label>
@@ -45,16 +44,10 @@
             <label class="w-32 mr-3 text-right">New password</label>
             <input type="password" class="input input-bordered input-primary w-full max-w-xl" v-model="form.new_pass" />
           </div>
-          <div class="my-5 flex items-center">
-            <label class="w-32 mr-3 text-right">Confirm new password</label>
-            <input type="password" class="input input-bordered input-primary w-full max-w-xl"
-              v-model="form.confirm_new_pass" />
-          </div>
         </div>
         <button class="btn btn-secondary float-right mt-5">Update Info</button>
       </form>
       <div class="modal-action">
-        <!-- if there is a button, it will close the modal -->
         <button class="btn btn-ghost border-none outline-none text-red-500 text-sm p-1.5 absolute top-0 right-0">
           <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
@@ -70,17 +63,16 @@
 
 
 <script setup lang="ts">
-import { usePage, useForm } from '@inertiajs/vue3'
-import type { userType } from '../../types/type'
+import { useForm } from '@inertiajs/vue3'
 import AlertError from './AlertError.vue';
 
-const currentUser = usePage().props.currentUser
+const props = defineProps({ user: Object, errors: Object })
 
-type Form = { avatar: File | undefined; username: string; bio: string; old_pass: string; new_pass: string; confirm_new_pass: string }
-const form = useForm<Form>({ avatar: undefined, username: '', bio: '', old_pass: '', new_pass: '', confirm_new_pass: '' })
+type Form = { avatar: File | undefined; username: string; bio: string; old_pass: string; new_pass: string;}
+const form = useForm<Form>({ avatar: undefined, username: '', bio: '', old_pass: '', new_pass: ''})
 
 const submit = () => {
-  form.post(`/usersettings/${(currentUser as userType).id}`, {
+  form.post(`/usersettings/${props.user.id}`, {
     onSuccess: () => location.reload(),
   })
 }
