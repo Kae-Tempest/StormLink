@@ -1,5 +1,5 @@
 <template>
-    <div class="border-2 border-primary w-full xl:w-[48%] break-all h-fit rounded-md">
+    <div class="border-2 border-primary w-full xl:w-[48%] break-all h-fit rounded-md bg-base-100/40">
         <div class="flex justify-between" :class="props.index % 2 == 0 ? '' : 'flex-row-reverse'">
             <span class="p-1 flex items-center">{{ new Date(props.created_at).toLocaleDateString() }}</span>
             <div class="flex items-center" :class="props.index % 2 == 0 ? '' : 'flex-row-reverse'">
@@ -8,7 +8,7 @@
                 <img v-else src="/assets/defaultUser.png" alt="" class="w-10 border-2 border-t-0 border-primary" :class="props.index % 2 == 0 ? 'rounded-l-md rounded-tr-md border-r-0' : 'rounded-r-md rounded-tl-md border-l-0'">
             </div>
         </div>
-        <div :class="props.index % 2 == 0 ? 'pl-1' : ''">{{ props.content }}</div>
+        <div class="pl-1">{{ props.content }}</div>
     </div>
 </template>
 

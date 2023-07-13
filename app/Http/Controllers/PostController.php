@@ -7,6 +7,8 @@ use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -23,7 +25,7 @@ class PostController extends Controller
     {
         return Inertia::render('Post',[
             'post' => Post::with('user')->findOrFail($id),
-            'comments' => Comment::with('user')->where('post_id', $id)->get(),
+            'comments' => Comment::with('user')->where('post_id', $id)->orderBy('created_at', 'DESC')->get(),
             'ConnectUser' => Auth::user()
         ]);
     }
@@ -33,8 +35,9 @@ class PostController extends Controller
         $payload = $request->validate([
             'file' => 'required|mimes:png,jpg,jpeg,gif|max:10240',
             'size' => ['required'],
-            'description' => ['required', 'min:1', 'max:300'],
+            'description' => ['min:1', 'max:300'],
         ]);
+
         $path = $request->file('file')->store('posts');
         $path = '/storage/' . $path;
 

@@ -4,13 +4,13 @@
             <img v-if="props.user.avatar" alt=""
                 :src="props.user.avatar"
                 class="border-2 border-secondary rounded-full w-[60px] h-fit"> <!-- put correct user avatar -->
-            <img v-else src="../../../../public/assets/defaultUser.png" alt=""
+            <img v-else src="/assets/defaultUser.png" alt=""
                  class="border-2 border-secondary rounded-full w-[60px] h-fit">
             <div class=" ml-4 my-auto text-xl">
                 {{ props.user.username }}
             </div>
         </div>
-        <div v-if="type === 2" class="break-words text-center my-auto">
+        <div v-if="type === 1" class="break-words text-center my-auto">
             {{ props.desc }}
         </div>
         <div class="text-right my-auto flex mx-5 justify-end">
