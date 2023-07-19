@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->integer('type_post');
-            $table->string('size');
-            $table->text('description')->nullable();
-            $table->string('file')->nullable();
-            $table->integer('like')->default(0);
+            $table->string('follower_id');
+            $table->string('followed_id');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('follows');
     }
 };

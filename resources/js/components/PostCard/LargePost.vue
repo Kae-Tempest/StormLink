@@ -1,23 +1,24 @@
 <template>
-    <TLink :href="`/post/${props.id}`" :key="props.id" class="col-span-2">
-        <div v-if="props.type_post === 2"
-            class="border-2 border-secondary w-full h-[323px] overflow-hidden rounded-sm flex items-center justify-center text-center p-2 overflow-y-auto">
-            <span class="break-words w-full">{{ props.description }}</span>
-        </div>
-        <div v-if="props.type_post === 1"
-            class="flex border-2 border-secondary w-full h-[323px] overflow-hidden rounded-sm">
-            <img :src="props.file" :alt="props.file" class="aspect-video object-cover w-full rounded-sm">
-        </div>
-    </TLink>
+      <div class="border-2 border-secondary w-full h-[323px] overflow-hidden rounded-sm text-center overflow-y-auto col-span-2">
+        <deleteModal v-if="usePage().url != '/'" :connectUserId="props.connectUserId" :postUserId="props.postUserId" :postId="props.id"/>
+        <TLink :href="`/post/${props.id}`">
+          <div v-if="props.type_post === 2" class="flex items-center w-full h-full">
+            <span  class="break-words w-full">{{ props.description }}</span>
+          </div>
+          <img v-if="props.type_post === 1" :src="props.file" :alt="props.file" class="aspect-video object-cover w-full h-full rounded-sm">
+        </TLink>
+      </div>
 </template>
 <script setup lang="ts">
-
+import {usePage} from "@inertiajs/vue3";
+import deleteModal from './deleteModal.vue'
 interface Props {
-    type_post: number
-    file?: string
-    description?: string
-    id: number
+  type_post: number
+  file?: string
+  description?: string
+  id: number
+  connectUserId: number,
+  postUserId: number
 }
-
 const props = defineProps<Props>()
 </script>

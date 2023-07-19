@@ -38,8 +38,13 @@ import TextPostBody from './PostModal/TextPostBody.vue'
 import ImgPostBody from './PostModal/ImgPostBody.vue'
 import { ref } from 'vue'
 import AlertError from "./PostModal/AlertError.vue";
+import {User} from "../../types/type.ts";
 
-const props = defineProps({ errors: Object, user: Object})
+interface Props {
+  user: User,
+  errors: {}
+}
+const props = defineProps<Props>()
 
 let active_el = ref(1)
 const SwitchPostType = (el: number) => { active_el.value = el }

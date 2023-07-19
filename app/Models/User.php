@@ -25,8 +25,6 @@ class User extends Authenticatable
         'roleId',
         'bio',
         'avatar',
-        'nbFollower',
-        'nbFollowed',
         'twitchId'
 
     ];

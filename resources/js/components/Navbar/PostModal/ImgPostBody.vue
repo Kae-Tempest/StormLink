@@ -35,8 +35,7 @@
           </label>
         </div>
         <div class="my-auto h-full">
-          <textarea name="PostDescription" cols="40" rows="5" placeholder="Add Description..." v-model="form.description"
-            class="bg-primary/25 2xl:p-2 my-5 mx-3.5 rounded-sm resize-none caret-secondary ring-2 ring-secondary outline-none"></textarea>
+          <textarea name="PostDescription" cols="40" rows="5" placeholder="Add Description..." v-model="form.description" class="bg-primary/25 2xl:p-2 my-5 mx-3.5 rounded-sm resize-none caret-secondary ring-2 ring-secondary outline-none"></textarea>
         </div>
         <div class="my-auto mx-5">
           <button type="submit" class="bg-primary py-5 px-7 cursor-pointer rounded-sm w-96">
@@ -51,7 +50,7 @@
 <script lang="ts" setup>
 import { useForm } from "@inertiajs/vue3"
 
-const props = defineProps({ userId: Number})
+const props = defineProps<{ userId: number}>()
 
 type Form = { size: string; file: File | undefined; description: string; user_id: number; };
 const form = useForm<Form>({ size: '', file: undefined, description: '', user_id: props.userId });

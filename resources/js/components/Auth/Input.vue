@@ -4,7 +4,7 @@
       <span><font-awesome-icon :icon="props.iconName" class="w-6" /></span>
       <input :type="props.type" :placeholder="props.placeholder" min="3"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-        class="input input-bordered w-full" />
+        class="input input-bordered w-full"  icon-name=""/>
     </label>
   </div>
 </template>

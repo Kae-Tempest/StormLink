@@ -1,6 +1,6 @@
 <template>
   <!-- You can open the modal using ID.showModal() method -->
-  <div onclick="userSettings.showModal()">
+  <div onclick="userSettings.showModal()" class="cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
       class="w-8 h-8">
       <path stroke-linecap="round" stroke-linejoin="round"
@@ -9,8 +9,8 @@
     </svg>
   </div>
   <dialog id="userSettings" class="modal text-white bg-base-300/50">
-    <div v-if="props.errors.msg">
-      <AlertError :error="props.errors.msg" />
+    <div v-if="props.errors">
+      <AlertError :error="props.errors" />
     </div>
     <form method="dialog" class="modal-box w-full h-5/6 max-w-7xl border-2 border-secondary bg-base-300">
       <form @submit.prevent="submit">
@@ -65,13 +65,19 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3'
 import AlertError from './AlertError.vue';
+import {User} from "../../types/type.ts";
 
-const props = defineProps({ user: Object, errors: Object })
+interface Props {
+  user: User
+  errors: {}
+}
+const props = defineProps<Props>()
 
 type Form = { avatar: File | undefined; username: string; bio: string; old_pass: string; new_pass: string;}
 const form = useForm<Form>({ avatar: undefined, username: '', bio: '', old_pass: '', new_pass: ''})
 
 const submit = () => {
+  console.log(`/usersettings/${props.user.id}`)
   form.post(`/usersettings/${props.user.id}`, {
     onSuccess: () => location.reload(),
   })

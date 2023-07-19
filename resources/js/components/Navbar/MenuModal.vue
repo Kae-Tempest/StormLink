@@ -26,8 +26,9 @@
   
 <script lang="ts" setup>
 import { router } from '@inertiajs/vue3'
+import {User} from "../../types/type.ts";
 
-const props = defineProps({ user: Object })
+const props = defineProps<{ user: User }>()
 const logout = async () => { router.post('/logout') }
 </script>
  

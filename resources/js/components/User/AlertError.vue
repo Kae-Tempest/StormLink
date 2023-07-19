@@ -1,7 +1,7 @@
 <template>
-    <div class="toast toast-top toast-end mt-5">
+    <div class="toast toast-bottom toast-end mt-5 z-50">
         <div v-for="error in props.error" class="alert alert-error">
-            <span>{{ error[0] }}</span>
+            <span>{{ error }}</span>
         </div>
     </div>
 </template>

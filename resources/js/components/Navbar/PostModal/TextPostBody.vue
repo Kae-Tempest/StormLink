@@ -28,7 +28,8 @@
 
 <script lang="ts" setup>
 import { useForm } from "@inertiajs/vue3"
-const props = defineProps({ userId: Number})
+
+const props = defineProps<{ userId: number}>()
 
 type Form = { size: string; description: string; user_id: number; };
 const form = useForm<Form>({ size: '', description: '', user_id: props.userId });

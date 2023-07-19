@@ -19,8 +19,6 @@ return new class extends Migration
             $table->integer('role_id')->default('1');
             $table->text('bio')->default('');
             $table->string('avatar')->nullable();
-            $table->integer('nb_follower')->default('0');
-            $table->integer('nb_followed')->default('0');
             $table->string('twitch_id')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();

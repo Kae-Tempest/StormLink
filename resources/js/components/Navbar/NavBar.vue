@@ -26,8 +26,14 @@
 import PostModal from './PostModal.vue'
 import MenuModal from './MenuModal.vue'
 import { ref } from 'vue'
+import {User} from "../../types/type.ts";
 
-const props = defineProps({ user: Object, errors: Object })
+interface Props {
+  user: User,
+  errors: {}
+}
+
+const props = defineProps<Props>()
 
 let showMenu = ref(false)
 

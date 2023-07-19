@@ -17,6 +17,14 @@ Route::middleware([Authenticate::class])->group(function (){
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/usersettings/{id}',[UserController::class, 'edit'])->name('user.edit');
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/follow', [UserController::class, 'follow'])->name('user.follow');
+
+    Route::delete('/post',[PostController::class, 'destroy'])->name('post.destroy');
+    Route::delete('/comment',[CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::delete('/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
+
+
+    Route::patch('/like/{id}', [PostController::class, 'like'])->name('post.like');
 });
 
 

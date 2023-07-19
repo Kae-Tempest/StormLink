@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follows;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,21 +18,45 @@ class UserController extends Controller
         return Inertia::render('User',[
             'user' => User::where('id', $id)->first(),
             'posts' => Post::where('user_id', $id)->orderBy('created_at', 'DESC')->get(),
-            'ConnectUser' => Auth::user()
+            'ConnectUser' => Auth::user(),
+            'followers' => Follows::where('followed_id', $id)->get(),
+            'followed' => Follows::where('follower_id', $id)->get()
         ]);
     }
+
+    public function follow(Request $request): void
+    {
+        $payload = $request->validate([
+            'followed_id' => ['required', 'integer'],
+        ]);
+        Follows::create([
+            'follower_id' => Auth::user()['id'],
+            'followed_id' => $payload['followed_id'],
+        ]);
+    }
+    public function unfollow(Request $request): void
+    {
+        $payload = $request->validate([
+            'followed_id' => ['required', 'integer'],
+        ]);
+
+        $follow = Follows::where('followed_id', $payload['followed_id']);
+        $follow->delete();
+    }
+
 
     public function edit(string $id, Request $request)
     {
         $payload = $request->validate([
-            'avatar' => ['mimes:png,jpg,jpeg,gif|max:10240','nullable'],
+            'avatar' => ['mimes:png,jpg,jpeg,gif','nullable'],
             'username' => ['string', 'max:12', 'nullable'],
             'bio' => ['string', 'max:300','nullable'],
             'old_pass' => ['string', 'min:4','nullable'],
             'new_pass' => ['string', 'min:4','nullable'],
         ]);
         $user = User::find($id);
-        if(!$payload){return back()->withErrors([
+
+        if(!$payload['username'] && !$payload['bio'] && !$payload['old_pass'] && !$payload['new_pass'] && !$payload['avatar']){return back()->withErrors([
             'msg' => 'Missing data or File Error'
         ]);}
         if($request->file('avatar')) {
@@ -44,8 +69,6 @@ class UserController extends Controller
         if($payload['old_pass'] and $payload['new_pass']){
             if ($payload['old_pass'] == $payload['new_pass']) {return back()->withErrors(['msg' => 'Password are identical']);}
             $user->password = Hash::make($payload['new_pass']);
-        } else if(!$payload['old_pass'] and $payload['new_pass'] or $payload['old_pass'] and !$payload['new_pass']) {
-            return back()->withErrors(['msg' => 'Missing old password or new password']);
         }
 
         $user->save();

@@ -28,7 +28,13 @@
 import AuthInput from '../components/Auth/Input.vue'
 import { useForm } from '@inertiajs/vue3'
 
-const props = defineProps({ errors: Object })
+interface Props {
+  errors: {
+    msg: string
+  }
+}
+
+const props = defineProps<Props>()
 
 type Form = { email: string; password: string; };
 const form = useForm<Form>({ email: '', password: '' });

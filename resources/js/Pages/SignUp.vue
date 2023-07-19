@@ -2,8 +2,8 @@
     <div>
         <div class="flex w-screen h-screen">
             <div class="w-1/4 m-auto">
-                <div v-if="props.errors.msg">
-                    <AlertError :error="props.errors.msg" />
+                <div v-if="props.errors">
+                    <AlertError :error="props.errors" />
                 </div>
                 <form @submit.prevent="signup">
                     <AuthInput :placeholder="'Username'" :type="'text'" :iconName="['fas', 'user']"

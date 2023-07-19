@@ -12,16 +12,17 @@
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text-alt">{{ props.nbPost }} Posts</span>
-                        <span class="label-text-alt">{{ props.user.nb_followed }} Followed</span>
-                        <span class="label-text-alt">{{ props.user.nb_follower }} Followers</span>
+                        <span class="label-text-alt">{{ props.Followed.length }} Followed</span>
+                        <span class="label-text-alt">{{ props.Followers.length }} Followers</span>
                     </label>
                     <p class="w-60 h-24 border border-secondary rounded-md bg-base-200/[35] text-xs p-1">{{
                         props.user.bio || 'any bio' }}</p>
                     <div class="label">
+                      <button v-if="!followed" class="btn btn-sm" @click="follow()"
+                            :class="ConnectUserId == props.user.id ? 'btn-disabled border border-secondary' : 'btn-secondary'">Follow</button>
+                      <button v-else class="btn btn-sm btn-primary" @click="unfollow()">UnFollow</button>
                         <button class="btn btn-sm"
-                            :class="$page.url.replace('/user/', '') == props.user.id ? 'btn-disabled border border-secondary' : 'btn-secondary'">Follow</button>
-                        <button class="btn btn-sm"
-                            :class="$page.url.replace('/user/', '') == props.user.id ? 'btn-disabled border border-secondary' : 'btn-secondary'">Message</button>
+                            :class="ConnectUserId == props.user.id ? 'btn-disabled border border-secondary' : 'btn-secondary'">Message</button>
                     </div>
                 </div>
                 <div>
@@ -34,5 +35,35 @@
 
 <script setup lang="ts">
 import UserSettingsModal from './UserSettingsModal.vue'
-const props = defineProps({ user: Object, errors: Object, nbPost: Number })
+import {User} from "../../types/type.ts";
+import {useForm} from "@inertiajs/vue3";
+import {onMounted, ref} from "vue";
+
+interface Props {
+  user: User
+  errors: {}
+  nbPost: number
+  ConnectUserId: number
+  Followers: []
+  Followed: []
+}
+const props = defineProps<Props>()
+const form = useForm({followed_id: props.user.id})
+const followed = ref(false)
+const follow = () => {
+  form.post('/follow');
+  followed.value = true
+}
+const unfollow = () => {
+  form.delete('/unfollow');
+  followed.value = false
+}
+
+onMounted(() => {
+  for (let follow of props.Followers) {
+    if(follow['follower_id'] == props.ConnectUserId){
+      followed.value = true
+    }
+  }
+})
 </script>

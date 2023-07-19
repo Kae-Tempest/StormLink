@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\LikedPost;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\File;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -26,7 +25,8 @@ class PostController extends Controller
         return Inertia::render('Post',[
             'post' => Post::with('user')->findOrFail($id),
             'comments' => Comment::with('user')->where('post_id', $id)->orderBy('created_at', 'DESC')->get(),
-            'ConnectUser' => Auth::user()
+            'ConnectUser' => Auth::user(),
+            'likedPost' => LikedPost::where('user_id', Auth::user()['id'])->where('post_id', $id)->first()
         ]);
     }
 
@@ -35,7 +35,7 @@ class PostController extends Controller
         $payload = $request->validate([
             'file' => 'required|mimes:png,jpg,jpeg,gif|max:10240',
             'size' => ['required'],
-            'description' => ['min:1', 'max:300'],
+            'description' => ['min:1', 'max:300','nullable'],
         ]);
 
         $path = $request->file('file')->store('posts');
@@ -67,5 +67,33 @@ class PostController extends Controller
             'like' => 0
         ]);
         return back();
+    }
+
+    public function destroy(Request $request)
+    {
+        $post = Post::find($request['post_id']);
+        $comments = Comment::where('post_id', $request['post_id']);
+        $likedPosts = LikedPost::where('post_id', $request['post_id']);
+        $likedPosts->delete();
+        $comments->delete();
+        $post->delete();
+    }
+
+    public function like(String $id, Request $request)
+    {
+        $post = Post::find($id);
+        $post->like = $request['like'];
+        $isLike = LikedPost::where('user_id', Auth::user()['id'])->where('post_id',$id)->first();
+        if(!$isLike) {
+            LikedPost::create([
+                'user_id' => Auth::user()['id'],
+                'post_id' => $id,
+                'liked' => true
+            ]);
+        } else {
+            $isLike->liked = !$isLike->liked;
+            $isLike->save();
+        }
+        $post->save();
     }
 }
