@@ -8,7 +8,7 @@
             </TLink>
             <div class="flex flex-col flex-grow">
                 <TLink href="/" class="btn btn-ghost text-lg short:text-sm my-2.5">Home</TLink>
-                <TLink href="/search" class="btn btn-ghost text-lg short:text-sm my-2.5">Search</TLink>
+                <SearchModal/>
                 <TLink href="/chat" class="btn btn-ghost text-lg short:text-sm my-2.5">Chat</TLink>
                 <PostModal :errors="props.errors" :user="props.user"/>
             </div>
@@ -27,6 +27,7 @@ import PostModal from './PostModal.vue'
 import MenuModal from './MenuModal.vue'
 import { ref } from 'vue'
 import {User} from "../../types/type.ts";
+import SearchModal from "./SearchModal.vue";
 
 interface Props {
   user: User,

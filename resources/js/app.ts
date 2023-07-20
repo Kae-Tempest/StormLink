@@ -9,10 +9,11 @@ import {
     faUser,
     faAt,
     faLock,
-    faHeart as fasHeart
+    faHeart as fasHeart,
+    faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHeart, faMessage, faPaperPlane, faUser, faAt, faLock, fasHeart);
+library.add(faHeart, faMessage, faPaperPlane, faUser, faAt, faLock, fasHeart,faMagnifyingGlass);
 
 createInertiaApp({
     //@ts-ignore

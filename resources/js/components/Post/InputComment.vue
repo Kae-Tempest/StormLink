@@ -1,7 +1,7 @@
 <template>
     <div class="grid h-fit py-5">
         <input v-model="form.content" type="text" placeholder="Send Comment..."
-            class="input input-bordered input-primary pl-2 col-[1/1] row-[1/1]">
+            class="input input-bordered input-primary pl-2 col-[1/1] row-[1/1]" @keydown.enter.exact.prevent="submit()">
         <button class="bg-primary rounded-[5px] py-2 px-5 ml-auto col-[1/1] row-[1/1]" @click="submit()">
             <font-awesome-icon :icon="['fas', 'paper-plane']" size="xl" />
         </button>

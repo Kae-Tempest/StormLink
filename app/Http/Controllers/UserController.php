@@ -44,6 +44,13 @@ class UserController extends Controller
         $follow->delete();
     }
 
+    public function search(Request $request)
+    {
+        $payload = $request->validate(['search' => 'string|required']);
+
+        return User::where('username','like','%'.$payload['search'].'%')->get();
+    }
+
 
     public function edit(string $id, Request $request)
     {

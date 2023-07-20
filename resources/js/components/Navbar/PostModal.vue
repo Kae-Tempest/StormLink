@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-ghost text-lg my-2.5" onclick="postmodal.showModal()">Post</button>
+  <button class="btn btn-ghost text-lg my-2.5 short:text-sm" onclick="postmodal.showModal()">Post</button>
   <dialog id="postmodal" class="modal text-white bg-base-300/50">
     <div v-if="props.errors">
       <AlertError :error="props.errors" />

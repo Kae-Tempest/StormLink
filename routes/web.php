@@ -18,6 +18,7 @@ Route::middleware([Authenticate::class])->group(function (){
     Route::post('/usersettings/{id}',[UserController::class, 'edit'])->name('user.edit');
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
     Route::post('/follow', [UserController::class, 'follow'])->name('user.follow');
+    Route::post('search', [UserController::class, 'search'])->name('user.search');
 
     Route::delete('/post',[PostController::class, 'destroy'])->name('post.destroy');
     Route::delete('/comment',[CommentController::class, 'destroy'])->name('comment.destroy');
