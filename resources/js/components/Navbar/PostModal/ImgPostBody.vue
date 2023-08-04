@@ -57,8 +57,6 @@ const form = useForm<Form>({ size: '', file: undefined, description: '', user_id
 
 const submit = async () => {
   console.log(form.size)
-  form.post("/postI", {
-    onSuccess: () => location.reload(),
-  });
+  form.post("/postI");
 };
 </script>

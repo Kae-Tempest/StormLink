@@ -55,7 +55,7 @@ class PostController extends Controller
     {
         $payload = $request->validate([
             'size' => ['required'],
-            'description' => ['required', 'min:1', 'max:300'],
+            'description' => ['required', 'min:1', 'max:2048'],
         ]);
 
         Post::create([
@@ -71,6 +71,7 @@ class PostController extends Controller
 
     public function destroy(Request $request)
     {
+        dd($request['post_id']);
         $post = Post::find($request['post_id']);
         $comments = Comment::where('post_id', $request['post_id']);
         $likedPosts = LikedPost::where('post_id', $request['post_id']);

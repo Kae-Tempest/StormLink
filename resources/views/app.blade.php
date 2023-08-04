@@ -9,6 +9,7 @@
     @inertiaHead
 </head>
     <body class="relative bg-fixed bg-[url(../assets/backgroundLogo1000.png)] bg-no-repeat bg-center bg-contain">
+{{--    <body class="relative">--}}
         <div class="relative min-h-screen">
             @inertia
         </div>

@@ -1,11 +1,11 @@
 <template>
     <div class="w-full">
-        <NavBar :user="props.ConnectUser"/>
+        <NavBar :user="props.ConnectUser" :errors="{}"/>
         <div class="pr-10 pl-[8rem] md:pl-[max(0px,16%)] pt-5">
             <img v-if="props.post.file" :src="props.post.file" :alt="props.post.file"
-                class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-sm border-2 border-secondary mb-5 mx-auto"
+                class="w-full h-full max-w-[50%] 3.5xl:max-w-[35%] rounded-[1.875rem] shadow-[2px_6px_4px_0px_#181929] bg-gradient-to-b from-base-100 to-base-200 mb-5 mx-auto"
                 :class="{ 'max-w-[35%]': props.post.size == 2 }">
-            <div v-if="!props.post.file" class="text-center p-2 border-2 border-secondary rounded-sm mx-auto my-5">
+            <div v-if="!props.post.file" class="text-center p-2 max-w-[75%] rounded-[1.875rem] shadow-[2px_6px_4px_0px_#181929] bg-gradient-to-b from-base-100 to-base-200 mx-auto my-5 opacity-90">
                 <span class="">{{ props.post.description }}</span>
             </div>
 
@@ -13,7 +13,7 @@
                 :type="props.post.type_post" :user="props.post.user" :nbPost="props.comments.length" :post_id="props.post.id" :liked="props.likedPost?.liked || false"/>
             <InputComment :user="props.post.user" :post_id="props.post.id"/>
 
-            <Comments :comments="props.comments" :ConnectUser="props.ConnectUser"/>
+            <Comments :comments="props.comments" :ConnectUser="props.ConnectUser" :PostId="props.post.id"/>
         </div>
     </div>
 </template>

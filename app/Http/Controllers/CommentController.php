@@ -20,6 +20,7 @@ class CommentController extends Controller
             'post_id' => $payload['post_id'],
             'like' => 0
         ]);
+        return to_route('post.show', ['id' => $payload['post_id']]);
     }
 
     public function destroy(Request $request)

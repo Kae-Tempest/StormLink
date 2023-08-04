@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from '@inertiajs/vue3'
+import {router, useForm} from '@inertiajs/vue3'
 interface Props {
   user: Object
   post_id: number
@@ -21,7 +21,13 @@ type Form = { content: string; post_id: number }
 const form = useForm<Form>({ content: '', post_id: props.post_id })
 
 const submit = () => {
-    form.post('/comment')
+    form.post('/comment',{
+      onSuccess: () => {
+        router.visit(`/post/${props.post_id}`, {
+          only: ['comments']
+        })
+      }
+    })
     form.content = ''
 }
 </script>

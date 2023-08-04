@@ -5,7 +5,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\PostController;
+use App\Http\Controllers\PostController;
+use Inertia\Inertia;
 
 Route::middleware([Authenticate::class])->group(function (){
     Route::get('/', [ PostController::class, 'index' ])->name('post.index');
@@ -26,6 +27,13 @@ Route::middleware([Authenticate::class])->group(function (){
 
 
     Route::patch('/like/{id}', [PostController::class, 'like'])->name('post.like');
+
+
+    Route::get('/chat', function () {
+        return Inertia::render('Chat');
+    });
+
+
 });
 
 

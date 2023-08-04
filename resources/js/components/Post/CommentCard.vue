@@ -1,5 +1,5 @@
 <template>
-    <div class="border-2 border-primary w-full xl:w-[48%] break-all h-fit rounded-md bg-base-100/40">
+    <div class="w-full xl:w-[48%] break-all h-fit bg-base-100/40 rounded-2xl shadow-[2px_6px_4px_0px_#181929] bg-gradient-to-b from-base-100 to-base-200">
         <div class="flex justify-between" :class="props.index % 2 == 0 ? '' : 'flex-row-reverse'">
           <div class="flex pt-1" :class="props.index % 2 == 0 ? 'flex-row-reverse' : ''">
             <div v-if="props.connectUserId == props.user.id" @click="destroy()"
@@ -18,21 +18,35 @@
                 <img v-else src="/assets/defaultUser.png" alt="" class="w-10 border-2 border-t-0 border-primary" :class="props.index % 2 == 0 ? 'rounded-l-md rounded-tr-md border-r-0' : 'rounded-r-md rounded-tl-md border-l-0'">
             </div>
         </div>
-        <div class="pl-1">{{ props.content }}</div>
+        <div class="pl-2">{{ props.content }}</div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import {useForm} from "@inertiajs/vue3";
-const props = defineProps({ content: String, like: Number, created_at: String, index: Number, user: Object, connectUserId: Number, id: Number })
+import {router, useForm} from "@inertiajs/vue3";
+import {User} from "../../types/type.ts";
+
+interface Props {
+  content: string
+  like: number
+  created_at: string
+  index: number
+  user: User
+  connectUserId: number
+  id: number
+  PostId: number
+}
+
+const props = defineProps<Props>()
 
 const form = useForm({comment_id: props.id})
 
 const destroy = () => {
   form.delete('/comment',{
     onSuccess: () => {
-      location.reload()
+      router.visit(`/post/${props.PostId}`,{
+        only: ['comments']
+      })
     }
   })
 }

@@ -3,7 +3,7 @@
         :class="props.comments.indexOf(comment) % 2 == 0 ? 'flex justify-start' : 'flex justify-end'">
         <CommentCard :index="props.comments.indexOf(comment)" :content="comment.content"
                      :like="comment.like" :created_at="comment.created_at"
-                     :user="comment.user" :connectUserId="props.ConnectUser.id" :id="comment.id"/>
+                     :user="comment.user" :connectUserId="props.ConnectUser.id" :id="comment.id" :PostId="props.PostId"/>
     </div>
 </template>
 <script setup lang="ts">
@@ -12,6 +12,7 @@ import {User, Comment} from "../../types/type.ts";
 interface Props {
   ConnectUser: User,
   comments: Comment[]
+  PostId: number
 }
 const props = defineProps<Props>()
 
